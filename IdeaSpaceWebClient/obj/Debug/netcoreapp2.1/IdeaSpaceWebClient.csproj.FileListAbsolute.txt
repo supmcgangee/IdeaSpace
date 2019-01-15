@@ -1,0 +1,14 @@
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.csprojAssemblyReference.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.csproj.CoreCompileInputs.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.RazorAssemblyInfo.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.RazorAssemblyInfo.cs
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.AssemblyInfoInputs.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.AssemblyInfo.cs
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\bin\Debug\netcoreapp2.1\IdeaSpaceWebClient.deps.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\bin\Debug\netcoreapp2.1\IdeaSpaceWebClient.runtimeconfig.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\bin\Debug\netcoreapp2.1\IdeaSpaceWebClient.runtimeconfig.dev.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\bin\Debug\netcoreapp2.1\IdeaSpaceWebClient.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\bin\Debug\netcoreapp2.1\IdeaSpaceWebClient.pdb
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.RazorTargetAssemblyInfo.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceWebClient\obj\Debug\netcoreapp2.1\IdeaSpaceWebClient.pdb

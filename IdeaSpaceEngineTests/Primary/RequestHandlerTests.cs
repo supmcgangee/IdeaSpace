@@ -1,0 +1,94 @@
+﻿using System.Collections.Generic;
+using Newtonsoft.Json;
+using IdeaSpace.Models;
+using IdeaSpace.Primary;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
+namespace IdeaSpaceTests.Primary
+{
+    [TestClass]
+    public class RequestHandlerTests
+    {
+        private RequestHandler requestHandler;
+        private readonly Mock<ISpaceManager> spaceManagerMock = new Mock<ISpaceManager>();
+        private readonly Mock<IIdeaManager> ideaManagerMock = new Mock<IIdeaManager>();
+        private const string spaceId = "space";
+
+        [TestInitialize]
+        public void SetUp()
+        {
+            requestHandler = new RequestHandler(spaceManagerMock.Object, ideaManagerMock.Object);
+        }
+
+        [TestMethod]
+        public void VerifyThatCreateNewSpaceMethodIsCalled()
+        {
+            var space = new Space { Name = spaceId };
+            var data = JsonConvert.SerializeObject(space);
+            spaceManagerMock.Setup(mock => mock.SaveSpace(It.IsAny<Space>()));
+
+            requestHandler.CreateNewSpace(data);
+
+            spaceManagerMock.Verify(mock => mock.SaveSpace(It.IsAny<Space>()));
+        }
+
+        [TestMethod]
+        public void VerifyThatCreateNewIdeaMethodIsCalled()
+        {
+            var idea = new Idea{ Title = "Idea", Body = "Body" };
+            var data = JsonConvert.SerializeObject(idea);
+            ideaManagerMock.Setup(mock => mock.SaveIdea(It.IsAny<Idea>()));
+
+            requestHandler.CreateNewIdea(spaceId, data);
+
+            ideaManagerMock.Verify(mock => mock.SaveIdea(It.IsAny<Idea>()));
+        }
+
+        [TestMethod]
+        public void VerifyThatCanGetAllSpaces()
+        {
+            var testList = new List<Space>();
+
+            spaceManagerMock.Setup(mock => mock.GetSpacesList()).Returns(testList);
+
+            requestHandler.GetAllSpaces();
+
+            spaceManagerMock.Verify(mock => mock.GetSpacesList());
+        }
+
+        [TestMethod]
+        public void VerifyThatCanGetAllIdeasFromSpace()
+        {
+            var testList = new List<Idea>();
+
+            ideaManagerMock.Setup(mock => mock.GetAllIdeas()).Returns(testList);
+
+            requestHandler.GetAllIdeas(spaceId);
+
+            ideaManagerMock.Verify(mock => mock.GetAllIdeas());
+        }
+
+        [TestMethod]
+        public void VerifyThatDeleteSpaceMethodIsCalled()
+        {
+            spaceManagerMock.Setup(mock => mock.DeleteSpaceWithId(spaceId));
+
+            requestHandler.DeleteSpace(spaceId);
+
+            spaceManagerMock.Verify(mock => mock.DeleteSpaceWithId(It.IsAny<string>()));
+        }
+
+        [TestMethod]
+        public void VerifyThatDeleteIdeaMethodIsCalled()
+        {
+            var ideaId = "idea";
+
+            ideaManagerMock.Setup(mock => mock.DeleteIdeaWithTitle(ideaId));
+
+            requestHandler.DeleteIdea(spaceId, ideaId);
+
+            ideaManagerMock.Verify(mock => mock.DeleteIdeaWithTitle(ideaId));
+        }
+    }
+}

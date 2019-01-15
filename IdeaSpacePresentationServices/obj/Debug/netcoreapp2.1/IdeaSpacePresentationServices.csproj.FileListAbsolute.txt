@@ -1,0 +1,17 @@
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpacePresentationServices.deps.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpacePresentationServices.runtimeconfig.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpacePresentationServices.runtimeconfig.dev.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpacePresentationServices.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpacePresentationServices.pdb
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpace.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\bin\Debug\netcoreapp2.1\IdeaSpace.pdb
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.csprojAssemblyReference.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.csproj.CoreCompileInputs.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.RazorAssemblyInfo.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.RazorAssemblyInfo.cs
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.AssemblyInfoInputs.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.AssemblyInfo.cs
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.RazorTargetAssemblyInfo.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.csproj.CopyComplete
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpacePresentationServices\obj\Debug\netcoreapp2.1\IdeaSpacePresentationServices.pdb

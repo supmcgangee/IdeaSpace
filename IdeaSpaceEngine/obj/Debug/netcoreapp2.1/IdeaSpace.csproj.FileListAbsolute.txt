@@ -1,0 +1,11 @@
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\bin\Debug\netcoreapp2.1\IdeaSpace.deps.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\bin\Debug\netcoreapp2.1\IdeaSpace.runtimeconfig.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\bin\Debug\netcoreapp2.1\IdeaSpace.runtimeconfig.dev.json
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\bin\Debug\netcoreapp2.1\IdeaSpace.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\bin\Debug\netcoreapp2.1\IdeaSpace.pdb
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.csprojAssemblyReference.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.csproj.CoreCompileInputs.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.AssemblyInfoInputs.cache
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.AssemblyInfo.cs
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.pdb

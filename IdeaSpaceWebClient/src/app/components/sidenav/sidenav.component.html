@@ -1,0 +1,13 @@
+<mat-drawer-container class="sidenav">
+    <mat-drawer mode="side" [(opened)]="sidenavOpened">
+      <app-spacelist></app-spacelist>
+    </mat-drawer>
+    <mat-drawer-content class="sidenav-content">
+      <button *ngIf="sidenavOpened == true" (click)="toggleSidenav()">
+        Hide Spaces
+      </button>
+      <button *ngIf="sidenavOpened == false" (click)="toggleSidenav()">
+        Show Spaces
+      </button>
+    </mat-drawer-content>
+  </mat-drawer-container>
