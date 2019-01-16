@@ -5,7 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatButtonModule, MatIconModule} from '@angular/material';
+import { MatButtonModule, MatIconModule, MatInputModule} from '@angular/material';
+import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpacelistComponent } from './components/spacelist/spacelist.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
@@ -25,6 +26,8 @@ import { WorkSpaceComponent } from './components/work-space/work-space.component
     MatSidenavModule,
     MatButtonModule,
     MatIconModule,
+    MatInputModule,
+    FormsModule,
     BrowserAnimationsModule
   ],
   providers: [],

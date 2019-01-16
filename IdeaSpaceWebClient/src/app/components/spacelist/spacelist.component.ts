@@ -12,6 +12,8 @@ export class SpacelistComponent implements OnInit {
   spaces : Space[] = [];
   spaceNames : string[] = [];
 
+  newSpaceName : string = "";
+
   constructor(
     private service : SpacelistService 
   ) { }
@@ -35,7 +37,16 @@ export class SpacelistComponent implements OnInit {
 
     this.spaceNames = [];
     this.spaces.forEach(space => {
-      this.spaceNames.push(space.Name)
+      this.spaceNames.push(space.Name);
     });
+  }
+
+  async createNewSpace(){
+    let newSpace : Space = new Space;
+    newSpace.Name = this.newSpaceName;
+    await this.service.createNewSpace(newSpace);
+    console.log("Created Space: " + this.newSpaceName);
+    this.newSpaceName = '';
+    this.updateSpacesList();
   }
 }

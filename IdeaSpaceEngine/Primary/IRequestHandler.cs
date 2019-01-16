@@ -1,8 +1,10 @@
-﻿namespace IdeaSpace.Primary
+﻿using IdeaSpace.Models;
+
+namespace IdeaSpace.Primary
 {
     public interface IRequestHandler
     {
-        void CreateNewSpace(string data);
+        void CreateNewSpace(Space data);
         void CreateNewIdea(string spaceId, string data);
         string GetAllSpaces();
         string GetAllIdeas(string spaceId);

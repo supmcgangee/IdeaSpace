@@ -15,11 +15,9 @@ namespace IdeaSpace.Primary
             this.ideaManager = ideaManager;
         }
 
-        public void CreateNewSpace(string data)
+        public void CreateNewSpace(Space data)
         {
-            var newSpace = JsonConvert.DeserializeObject<Space>(data);
-
-            spaceManager.SaveSpace(newSpace);
+            spaceManager.SaveSpace(data);
         }
 
         public void CreateNewIdea(string spaceId, string data)

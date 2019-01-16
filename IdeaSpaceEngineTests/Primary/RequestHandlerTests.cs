@@ -25,10 +25,9 @@ namespace IdeaSpaceTests.Primary
         public void VerifyThatCreateNewSpaceMethodIsCalled()
         {
             var space = new Space { Name = spaceId };
-            var data = JsonConvert.SerializeObject(space);
             spaceManagerMock.Setup(mock => mock.SaveSpace(It.IsAny<Space>()));
 
-            requestHandler.CreateNewSpace(data);
+            requestHandler.CreateNewSpace(space);
 
             spaceManagerMock.Verify(mock => mock.SaveSpace(It.IsAny<Space>()));
         }

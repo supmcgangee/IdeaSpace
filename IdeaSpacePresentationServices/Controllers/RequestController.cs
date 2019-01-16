@@ -1,3 +1,4 @@
+using IdeaSpace.Models;
 using IdeaSpace.Primary;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,11 +14,11 @@ namespace IdeaSpacePresentationServices.Controllers
             this.requestHandler = requestHandler;
         }
 
-        [Route("createSpace/{spaceId}")]
+        [Route("createSpace/")]
         [HttpPost]
-        public ActionResult CreateSpace([FromRoute] string spaceId)
+        public ActionResult CreateSpace([FromBody] Space space)
         {
-            requestHandler.CreateNewSpace(spaceId);
+            requestHandler.CreateNewSpace(space);
 
             return Ok();
         }

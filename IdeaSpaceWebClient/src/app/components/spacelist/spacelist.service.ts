@@ -15,4 +15,8 @@ export class SpacelistService {
   getAllSpaces() : Promise<Space[]>{
     return this.http.get<Space[]>(this.uri + "api/request/getSpaces").toPromise();
   }
+
+  createNewSpace(input : Space) : Promise<any>{
+    return this.http.post<Space>(this.uri + "api/request/createSpace", input).toPromise();
+  }
 }
