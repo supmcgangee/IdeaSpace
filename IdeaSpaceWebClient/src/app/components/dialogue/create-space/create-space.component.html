@@ -1,0 +1,9 @@
+<p>
+  create-space works!
+</p>
+
+<input placeholder="Input Field" [(ngModel)]="data.name">
+<div>
+    <button mat-button (click)="data.createSpace=true; closeDialog();"> Create</button>
+    <button mat-button [mat-dialog-close]="data.createSpace" (click)="closeDialog();"> Cancel</button>
+</div>

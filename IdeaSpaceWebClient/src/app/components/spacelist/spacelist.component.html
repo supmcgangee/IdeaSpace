@@ -1,9 +1,7 @@
-<h2>Space List</h2>
-
-<mat-form-field appearance="fill" style="width: 150px; ">
-  <input matInput type="text" [(ngModel)]="newSpaceName">
-</mat-form-field>
-<button mat-raised-button matSuffix style="min-width: 0px;" (click)="createNewSpace()">+</button>
+<h2>
+  Space List
+  <button mat-raised-button matSuffix style="min-width: 0px;" (click)="openCreateSpaceDialogue()">+</button>
+</h2>
 
 <div *ngFor="let space of spaces">
   <button mat-raised-button (click)="updateCurrentSpace(space)">{{space.Name}}</button>

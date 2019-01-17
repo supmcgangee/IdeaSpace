@@ -6,18 +6,21 @@ import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule, MatIconModule, MatInputModule} from '@angular/material';
+import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpacelistComponent } from './components/spacelist/spacelist.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WorkSpaceComponent } from './components/work-space/work-space.component';
+import { CreateSpaceComponent } from './components/dialogue/create-space/create-space.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SpacelistComponent,
     SidenavComponent,
-    WorkSpaceComponent
+    WorkSpaceComponent,
+    CreateSpaceComponent
   ],
   imports: [
     BrowserModule,
@@ -27,9 +30,11 @@ import { WorkSpaceComponent } from './components/work-space/work-space.component
     MatButtonModule,
     MatIconModule,
     MatInputModule,
+    MatDialogModule,
     FormsModule,
     BrowserAnimationsModule
   ],
+  entryComponents: [CreateSpaceComponent],
   providers: [],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,8 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SpacelistService } from 'src/app/components/spacelist/spacelist.service'
 import { Space } from '../models/space';
+import { MatDialog } from '@angular/material';
+import { CreateSpaceComponent } from '../dialogue/create-space/create-space.component';
 
 @Component({
   selector: 'app-spacelist',
@@ -11,13 +13,14 @@ export class SpacelistComponent implements OnInit {
 
   @Output() spaceEmitter = new EventEmitter();
 
-  spaces : Space[] = [];
-  currentSpace : Space;
+  spaces: Space[] = [];
+  currentSpace: Space;
 
-  newSpaceName : string = "";
+  newSpaceName: string = "";
 
   constructor(
-    private service : SpacelistService 
+    private service: SpacelistService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -28,20 +31,34 @@ export class SpacelistComponent implements OnInit {
 
   async updateSpacesList() {
     await this.service.getAllSpaces()
-    .then(data => {
-          this.spaces = [];
-          data.forEach(space => {
-            let newspace : Space = new Space;
+      .then(data => {
+        this.spaces = [];
+        data.forEach(space => {
+          let newspace: Space = new Space;
 
-            newspace.Name = space.Name;
-            newspace.canBeDeleted = space.canBeDeleted;
+          newspace.Name = space.Name;
+          newspace.canBeDeleted = space.canBeDeleted;
 
-            this.spaces.push(newspace);
-          });
+          this.spaces.push(newspace);
         });
+      });
   }
 
-  async createNewSpace(){
+  openCreateSpaceDialogue(){
+    let dialogRef = this.dialog.open(CreateSpaceComponent, {
+      width: '400px',
+      data: { name: this.newSpaceName }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result.createSpace == true){
+        this.newSpaceName = result.name;
+        this.createNewSpace();
+      }
+    });
+  }
+
+  async createNewSpace() {
     let newSpace : Space = new Space;
     newSpace.Name = this.newSpaceName;
     await this.service.createNewSpace(newSpace);
@@ -49,14 +66,14 @@ export class SpacelistComponent implements OnInit {
     this.updateSpacesList();
   }
 
-  async deleteSpace(spaceId : string){
+  async deleteSpace(spaceId: string) {
     //TODO - Add confirmation dialogue prompt 
     console.log(spaceId)
     await this.service.deleteSpace(spaceId);
     this.updateSpacesList();
   }
 
-  updateCurrentSpace(space : Space){
+  updateCurrentSpace(space: Space) {
     this.currentSpace = space;
     this.spaceEmitter.emit(this.currentSpace);
   }
