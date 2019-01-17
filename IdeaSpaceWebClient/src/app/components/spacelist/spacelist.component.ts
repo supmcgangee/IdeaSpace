@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SpacelistService } from 'src/app/components/spacelist/spacelist.service'
 import { Space } from '../models/space';
 
@@ -9,8 +9,10 @@ import { Space } from '../models/space';
 })
 export class SpacelistComponent implements OnInit {
 
+  @Output() spaceEmitter = new EventEmitter();
+
   spaces : Space[] = [];
-  spaceNames : string[] = [];
+  currentSpace : Space;
 
   newSpaceName : string = "";
 
@@ -20,11 +22,14 @@ export class SpacelistComponent implements OnInit {
 
   ngOnInit() {
     this.updateSpacesList();
+    this.currentSpace = new Space;
+    this.currentSpace.Name = 'Default Dir';
   }
 
   async updateSpacesList() {
     await this.service.getAllSpaces()
     .then(data => {
+          this.spaces = [];
           data.forEach(space => {
             let newspace : Space = new Space;
 
@@ -34,19 +39,25 @@ export class SpacelistComponent implements OnInit {
             this.spaces.push(newspace);
           });
         });
-
-    this.spaceNames = [];
-    this.spaces.forEach(space => {
-      this.spaceNames.push(space.Name);
-    });
   }
 
   async createNewSpace(){
     let newSpace : Space = new Space;
     newSpace.Name = this.newSpaceName;
     await this.service.createNewSpace(newSpace);
-    console.log("Created Space: " + this.newSpaceName);
     this.newSpaceName = '';
     this.updateSpacesList();
+  }
+
+  async deleteSpace(spaceId : string){
+    //TODO - Add confirmation dialogue prompt 
+    console.log(spaceId)
+    await this.service.deleteSpace(spaceId);
+    this.updateSpacesList();
+  }
+
+  updateCurrentSpace(space : Space){
+    this.currentSpace = space;
+    this.spaceEmitter.emit(this.currentSpace);
   }
 }

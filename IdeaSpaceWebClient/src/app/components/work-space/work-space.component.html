@@ -1,3 +1,19 @@
-<p>
-  work-space works!
-</p>
+<div *ngIf="currentSpace.Name != undefined">
+  <span>
+    Current Space: {{currentSpace.Name}}
+  </span>
+  <div>
+    <button (click)="createNewIdea()">
+      +
+    </button>
+    <input matInput placeholder="Title" type="text" [(ngModel)]="newIdeaTitle">
+    <textarea matInput placeholder="Body" rows="4" [(ngModel)]="newIdeaBody"></textarea>
+  </div>
+  <div *ngFor="let idea of ideas">
+    <p>
+      <button *ngIf="currentSpace.canBeDeleted == true" (click)="deleteIdea(idea.Title)">-</button>
+      --{{idea.Title}}--
+    </p>
+    <p>{{idea.Body}}</p>
+  </div>
+</div>

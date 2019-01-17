@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient} from '@angular/common/http'
+import { HttpClient } from '@angular/common/http';
 import { Space } from '../models/space';
 
 @Injectable({
@@ -18,5 +18,9 @@ export class SpacelistService {
 
   createNewSpace(input : Space) : Promise<any>{
     return this.http.post<Space>(this.uri + "api/request/createSpace", input).toPromise();
+  }
+
+  deleteSpace(input : string) : Promise<any>{
+    return this.http.delete<string>(this.uri + "api/request/deleteSpace/" + input).toPromise();
   }
 }

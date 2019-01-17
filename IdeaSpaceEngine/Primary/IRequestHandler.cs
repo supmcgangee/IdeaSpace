@@ -5,7 +5,7 @@ namespace IdeaSpace.Primary
     public interface IRequestHandler
     {
         void CreateNewSpace(Space data);
-        void CreateNewIdea(string spaceId, string data);
+        void CreateNewIdea(string spaceId, Idea data);
         string GetAllSpaces();
         string GetAllIdeas(string spaceId);
         void DeleteSpace(string spaceId);

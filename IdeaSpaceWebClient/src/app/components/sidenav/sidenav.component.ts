@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Space } from '../models/space';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,7 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  sidenavOpened : boolean = false;
+  sidenavOpened : boolean = true;
+  selectedSpace : Space = new Space;
 
   constructor() { }
 
@@ -16,5 +18,9 @@ export class SidenavComponent implements OnInit {
 
   toggleSidenav(){
     this.sidenavOpened = !this.sidenavOpened;
+  }
+
+  updateCurrentSpace(space : Space){
+    this.selectedSpace = space;
   }
 }

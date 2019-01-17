@@ -36,10 +36,9 @@ namespace IdeaSpaceTests.Primary
         public void VerifyThatCreateNewIdeaMethodIsCalled()
         {
             var idea = new Idea{ Title = "Idea", Body = "Body" };
-            var data = JsonConvert.SerializeObject(idea);
             ideaManagerMock.Setup(mock => mock.SaveIdea(It.IsAny<Idea>()));
 
-            requestHandler.CreateNewIdea(spaceId, data);
+            requestHandler.CreateNewIdea(spaceId, idea);
 
             ideaManagerMock.Verify(mock => mock.SaveIdea(It.IsAny<Idea>()));
         }

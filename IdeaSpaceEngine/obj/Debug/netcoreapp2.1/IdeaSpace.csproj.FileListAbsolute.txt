@@ -8,3 +8,4 @@ C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netc
 C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.AssemblyInfo.cs
 C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.dll
 C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.pdb
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngine\obj\Debug\netcoreapp2.1\IdeaSpace.csprojAssemblyReference.cache

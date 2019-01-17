@@ -25,7 +25,7 @@ namespace IdeaSpacePresentationServices.Controllers
 
         [Route("createIdea/{spaceId}")]
         [HttpPost]
-        public ActionResult CreateIdeaInSpace([FromRoute]string spaceId, [FromBody] string ideaData)
+        public ActionResult CreateIdeaInSpace([FromRoute]string spaceId, [FromBody] Idea ideaData)
         {
             requestHandler.CreateNewIdea(spaceId, ideaData);
 

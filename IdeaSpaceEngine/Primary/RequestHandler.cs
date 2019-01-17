@@ -20,12 +20,10 @@ namespace IdeaSpace.Primary
             spaceManager.SaveSpace(data);
         }
 
-        public void CreateNewIdea(string spaceId, string data)
+        public void CreateNewIdea(string spaceId, Idea data)
         {
-            var newIdea = JsonConvert.DeserializeObject<Idea>(data);
-
             ideaManager.ChangeCurrentSpaceDir(spaceId);
-            ideaManager.SaveIdea(newIdea);
+            ideaManager.SaveIdea(data);
         }
 
         public string GetAllSpaces()
