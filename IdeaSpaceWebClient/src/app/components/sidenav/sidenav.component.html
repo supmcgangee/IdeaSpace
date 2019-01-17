@@ -4,11 +4,11 @@
   </mat-drawer>
   <mat-drawer-content class="sidenav-content">
     <span>
-      <button mat-button *ngIf="sidenavOpened == true" (click)="toggleSidenav()">
-        Hide Spaces
+      <button mat-icon-button style="min-width: 0px" *ngIf="sidenavOpened == true" (click)="toggleSidenav()">
+          <mat-icon>chevron_left</mat-icon>
       </button>
-      <button mat-button *ngIf="sidenavOpened == false" (click)="toggleSidenav()">
-        Show Spaces
+      <button mat-icon-button style="min-width: 0px" *ngIf="sidenavOpened == false" (click)="toggleSidenav()">
+          <mat-icon>bookmarks</mat-icon>
       </button>
     </span>
     <app-work-space [changeSpace]="selectedSpace"></app-work-space>

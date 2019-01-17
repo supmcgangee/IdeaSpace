@@ -13,6 +13,7 @@ import { SpacelistComponent } from './components/spacelist/spacelist.component';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WorkSpaceComponent } from './components/work-space/work-space.component';
 import { CreateSpaceComponent } from './components/dialogue/create-space/create-space.component';
+import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CreateSpaceComponent } from './components/dialogue/create-space/create-
     SpacelistComponent,
     SidenavComponent,
     WorkSpaceComponent,
-    CreateSpaceComponent
+    CreateSpaceComponent,
+    SpaceInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +36,10 @@ import { CreateSpaceComponent } from './components/dialogue/create-space/create-
     FormsModule,
     BrowserAnimationsModule
   ],
-  entryComponents: [CreateSpaceComponent],
+  entryComponents: [
+    CreateSpaceComponent,
+    SpaceInfoComponent
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })

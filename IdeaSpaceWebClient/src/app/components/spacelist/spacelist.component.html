@@ -1,13 +1,16 @@
-<h2>
+<button mat-icon-button class="create-space-button" (click)="openCreateSpaceDialogue()">
+  <mat-icon>create_new_folder</mat-icon>
+</button>
+<button mat-icon-button class="refresh-spaces-button" (click)="updateSpacesList()">
+  <mat-icon>refresh</mat-icon>
+</button>
+<h2 class="sidenav-header">
   Space List
-  <button mat-raised-button matSuffix style="min-width: 0px;" (click)="openCreateSpaceDialogue()">+</button>
 </h2>
 
 <div *ngFor="let space of spaces">
-  <button mat-raised-button (click)="updateCurrentSpace(space)">{{space.Name}}</button>
-  <button mat-raised-button style="min-width: 0px" *ngIf="space.canBeDeleted == true" (click)="deleteSpace(space.Name)">-</button>
+  <button mat-raised-button class="space-button" (click)="updateCurrentSpace(space)">{{space.Name}}</button>
+  <button mat-icon-button class="delete-space-button" (click)="openSpaceInfoDialog(space)">
+    <mat-icon>info</mat-icon>
+  </button>
 </div>
-
-<button mat-raised-button (click)="updateSpacesList()">
-  Refresh
-</button>

@@ -1,0 +1,9 @@
+<p>Space Name: {{data.name}}</p>
+<p *ngIf="data.canBeDeleted == false">This space cannot be deleted</p>
+
+<div>
+    <button mat-icon-button *ngIf="data.canBeDeleted == true" (click)="data.toDelete = true; closeDialog();">
+      <mat-icon>delete_forever</mat-icon>
+    </button>
+    <button mat-button (click)="closeDialog();">Close</button>
+</div>
