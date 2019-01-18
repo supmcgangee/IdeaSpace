@@ -1,9 +1,9 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { SpacelistService } from 'src/app/components/spacelist/spacelist.service'
-import { Space } from '../models/space';
+import { Space } from '../../models/space';
 import { MatDialog } from '@angular/material';
-import { CreateSpaceComponent } from '../dialogue/create-space/create-space.component';
-import { SpaceInfoComponent } from '../dialogue/space-info/space-info.component';
+import { CreateSpaceComponent } from '../../dialogue/create-space/create-space.component';
+import { SpaceInfoComponent } from '../../dialogue/space-info/space-info.component';
+import { SpacelistService } from './spacelist.service';
 
 @Component({
   selector: 'app-spacelist',

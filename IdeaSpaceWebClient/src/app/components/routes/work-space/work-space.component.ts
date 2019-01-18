@@ -1,10 +1,10 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Space } from '../models/space';
-import { Idea } from '../models/idea';
+import { Space } from '../../models/space';
+import { Idea } from '../../models/idea';
 import { WorkSpaceService } from './work-space.service';
 import { MatDialog } from '@angular/material/dialog';
-import { CreateIdeaComponent } from '../dialogue/create-idea/create-idea.component';
-import { IdeaInfoComponent } from '../dialogue/idea-info/idea-info.component';
+import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
+import { IdeaInfoComponent } from '../../dialogue/idea-info/idea-info.component';
 
 @Component({
   selector: 'app-work-space',

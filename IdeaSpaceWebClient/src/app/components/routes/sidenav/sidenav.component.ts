@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Space } from '../models/space';
+import { Space } from '../../models/space';
 
 @Component({
   selector: 'app-sidenav',

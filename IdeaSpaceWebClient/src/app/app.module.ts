@@ -9,9 +9,9 @@ import { MatButtonModule, MatIconModule, MatInputModule } from '@angular/materia
 import { MatDialogModule } from '@angular/material/dialog';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { SpacelistComponent } from './components/spacelist/spacelist.component';
-import { SidenavComponent } from './components/sidenav/sidenav.component';
-import { WorkSpaceComponent } from './components/work-space/work-space.component';
+import { SpacelistComponent } from './components/routes/spacelist/spacelist.component';
+import { SidenavComponent } from './components/routes/sidenav/sidenav.component';
+import { WorkSpaceComponent } from './components/routes/work-space/work-space.component';
 import { CreateSpaceComponent } from './components/dialogue/create-space/create-space.component';
 import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.component';
 import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
