@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule,} from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from '@angular/common/http';
-import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule, MatIconModule, MatInputModule } from '@angular/material';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
@@ -18,6 +18,7 @@ import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.
 import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
 import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.component';
 import { IdeaCardComponent } from './components/routes/idea-card/idea-card.component';
+
 
 @NgModule({
   declarations: [

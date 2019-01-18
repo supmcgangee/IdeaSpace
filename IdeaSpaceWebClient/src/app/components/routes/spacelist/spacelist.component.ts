@@ -16,6 +16,7 @@ export class SpacelistComponent implements OnInit {
 
   spaces: Space[] = [];
   currentSpace: Space;
+  hoverSpace: Space;
 
   constructor(
     private service: SpacelistService,

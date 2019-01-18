@@ -1,7 +1,7 @@
-<mat-card class="idea-card">
-  <button mat-icon-button class="info-button" (click)="openIdeaInfoDialog(idea)">
+<mat-card class="idea-card" (mouseenter)="hovering = true" (mouseleave)="hovering = false">
+  <p class="text">{{idea.Title}}</p>
+  <p class="text">{{idea.Body}}</p>
+  <button mat-icon-button class="info-button" *ngIf="hovering == true" (click)="openIdeaInfoDialog(idea)">
     <mat-icon>info</mat-icon>
   </button>
-  <p>{{idea.Title}}</p>
-  <p>{{idea.Body}}</p>
 </mat-card>

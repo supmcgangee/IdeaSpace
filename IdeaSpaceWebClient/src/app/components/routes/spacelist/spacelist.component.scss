@@ -17,9 +17,26 @@
 
 .space-button{
     margin: 3px;
+    padding: 0px;
+    width: 180px;
 }
 
-.delete-space-button{
+.space-info-button{
     position: absolute;
     right: 0%;
+}
+
+.mat-card{
+    padding: 3px;
+    margin-left: 3px;
+    margin-top: 3px;
+    width: 187px;
+    background-color: #e7e7e7;
+}
+
+.mat-card-highlighted{
+    padding: 3px;
+    margin-top: 3px;
+    width: 187px;
+    background-color: white;
 }

@@ -8,8 +8,16 @@
   Space List
 </h2>
 <div *ngFor="let space of spaces">
-  <button mat-raised-button class="space-button" (click)="updateCurrentSpace(space)">{{space.Name}}</button>
-  <button mat-icon-button class="delete-space-button" (click)="openSpaceInfoDialog(space)">
-    <mat-icon>info</mat-icon>
-  </button>
+  <mat-card class="mat-card-highlighted" *ngIf="currentSpace == space" (mouseenter)="hoverSpace = space" (mouseleave)="hoverSpace = null">
+    <button mat-button class="space-button" (click)="updateCurrentSpace(space)">{{space.Name}}</button>
+    <button mat-icon-button *ngIf="hoverSpace == space" class="space-info-button" (click)="openSpaceInfoDialog(space)">
+      <mat-icon style="padding-bottom: 3px">info</mat-icon>
+    </button>
+  </mat-card>
+  <mat-card class="mat-card" *ngIf="currentSpace != space" (mouseenter)="hoverSpace = space" (mouseleave)="hoverSpace = null">
+      <button mat-button class="space-button" (click)="updateCurrentSpace(space)">{{space.Name}}</button>
+      <button mat-icon-button *ngIf="hoverSpace == space" class="space-info-button" (click)="openSpaceInfoDialog(space)">
+        <mat-icon style="padding-bottom: 3px">info</mat-icon>
+      </button>
+    </mat-card>
 </div>

@@ -14,6 +14,8 @@ export class IdeaCardComponent implements OnInit {
 
   @Output() emitter = new EventEmitter();
 
+  hovering : boolean;
+
   @Input()
   idea: Idea;
   @Input()
