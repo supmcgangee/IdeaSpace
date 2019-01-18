@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Space } from '../models/space';
+import { Space } from '../../models/space';
 
 @Injectable({
   providedIn: 'root'

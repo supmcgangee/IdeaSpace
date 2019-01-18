@@ -4,7 +4,6 @@ import { Idea } from '../../models/idea';
 import { WorkSpaceService } from './work-space.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
-import { IdeaInfoComponent } from '../../dialogue/idea-info/idea-info.component';
 
 @Component({
   selector: 'app-work-space',
@@ -16,6 +15,9 @@ export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
   private ideas: Idea[] = [];
+
+  columns : number;
+  rows : number; 
 
   @Input()
   set changeSpace(currentSpace: Space) {
@@ -65,20 +67,6 @@ export class WorkSpaceComponent implements OnInit {
     });
   }
 
-  openIdeaInfoDialog(idea : Idea){
-    let dialogRef = this.dialog.open(IdeaInfoComponent, {
-      width: '500px',
-      data: { title: idea.Title, body: idea.Body, canBeDeleted: this.currentSpace.canBeDeleted }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
-      if (result != undefined && result.toBeDeleted == true) {
-        this.deleteIdea(idea.Title);
-      }
-    });
-  }
-
   async createNewIdea(newIdeaTitle: string, newIdeaBody: string) {
     if (newIdeaTitle != "") {
       let newIdea: Idea = new Idea;
@@ -88,10 +76,5 @@ export class WorkSpaceComponent implements OnInit {
       await this.service.createNewIdea(this.currentSpace.Name, newIdea);
       this.updateIdeaList();
     }
-  }
-
-  async deleteIdea(ideaTitle: string) {
-    await this.service.deleteIdea(this.currentSpace.Name, ideaTitle);
-    this.updateIdeaList();
   }
 }

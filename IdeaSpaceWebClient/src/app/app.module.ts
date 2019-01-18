@@ -7,6 +7,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule, MatIconModule, MatInputModule } from '@angular/material';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SpacelistComponent } from './components/routes/spacelist/spacelist.component';
@@ -16,6 +17,7 @@ import { CreateSpaceComponent } from './components/dialogue/create-space/create-
 import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.component';
 import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
 import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.component';
+import { IdeaCardComponent } from './components/routes/idea-card/idea-card.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.com
     CreateSpaceComponent,
     SpaceInfoComponent,
     CreateIdeaComponent,
-    IdeaInfoComponent
+    IdeaInfoComponent,
+    IdeaCardComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +40,7 @@ import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.com
     MatIconModule,
     MatInputModule,
     MatDialogModule,
+    MatCardModule,
     FormsModule,
     BrowserAnimationsModule
   ],

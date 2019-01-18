@@ -8,10 +8,6 @@
     </button>
   </div>
   <div *ngFor="let idea of ideas">
-    <p>
-      <button (click)="openIdeaInfoDialog(idea)">-</button>
-      --{{idea.Title}}--
-    </p>
-    <p>{{idea.Body}}</p>
+    <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateIdeaList()"></app-idea-card>
   </div>
 </div>
