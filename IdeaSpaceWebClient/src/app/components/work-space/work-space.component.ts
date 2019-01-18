@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Space } from '../models/space';
 import { Idea } from '../models/idea';
 import { WorkSpaceService } from './work-space.service';
+import { MatDialog } from '@angular/material/dialog';
+import { CreateIdeaComponent } from '../dialogue/create-idea/create-idea.component';
 
 @Component({
   selector: 'app-work-space',
@@ -13,8 +15,6 @@ export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
   private ideas: Idea[] = [];
-  newIdeaTitle : string = "";
-  newIdeaBody : string = "";
 
   @Input()
   set changeSpace(currentSpace: Space) {
@@ -24,14 +24,15 @@ export class WorkSpaceComponent implements OnInit {
     }
   }
 
-  constructor(private service: WorkSpaceService) { }
+  constructor(
+    private service: WorkSpaceService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
      
   }
 
   async updateIdeaList() {
-    console.log(this.currentSpace.canBeDeleted);
     if (!this.currentSpace.Name != null) {
       await this.service.getAllIdeas(this.currentSpace.Name)
         .then(data => {
@@ -48,18 +49,30 @@ export class WorkSpaceComponent implements OnInit {
     }
   }
 
-  async createNewIdea(){
-    if(this.newIdeaTitle != ""){
+  openCreateIdeaDialog(){
+    let dialogRef = this.dialog.open(CreateIdeaComponent, {
+      width: '230px',
+      data: { title: "", body: "" }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result.createIdea == true) {
+        let newIdeaTitle = result.title;
+        let newIdeaBody = result.body;
+        this.createNewIdea(newIdeaTitle, newIdeaBody);
+      }
+    });
+  }
+
+  async createNewIdea(newIdeaTitle : string, newIdeaBody : string){
+    if(newIdeaTitle != ""){
       let newIdea : Idea = new Idea;
-      newIdea.Title = this.newIdeaTitle;
-      newIdea.Body = this.newIdeaBody;
+      newIdea.Title = newIdeaTitle;
+      newIdea.Body = newIdeaBody;
 
       await this.service.createNewIdea(this.currentSpace.Name, newIdea);
       this.updateIdeaList();
     }
-
-    this.newIdeaTitle = "";
-    this.newIdeaBody = "";
   }
 
   async deleteIdea(ideaTitle : string){

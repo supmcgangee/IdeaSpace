@@ -1,0 +1,10 @@
+<p>
+  create-idea works!
+</p>
+
+<div><input matInput placeholder="Title" type="text" [(ngModel)]="data.title"></div>
+<textarea matInput placeholder="Body" rows="4" [(ngModel)]="data.body"></textarea>
+<div>
+    <button mat-button (click)="data.createIdea=true; closeDialog();"> Create</button>
+    <button mat-button (click)="closeDialog();"> Cancel</button>
+</div>

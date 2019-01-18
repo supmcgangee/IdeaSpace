@@ -1,5 +1,7 @@
 <p>Space Name: {{data.name}}</p>
 <p *ngIf="data.canBeDeleted == false">This space cannot be deleted</p>
+<p *ngIf="data.canCreateIdeas == false">You cannot create Ideas within this Space</p>
+<p>{{data.desc}}</p>
 
 <div>
   <button mat-icon-button *ngIf="data.canBeDeleted == true" (click)="data.toDelete = true; closeDialog();">

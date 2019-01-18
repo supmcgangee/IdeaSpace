@@ -14,6 +14,7 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { WorkSpaceComponent } from './components/work-space/work-space.component';
 import { CreateSpaceComponent } from './components/dialogue/create-space/create-space.component';
 import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.component';
+import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.
     SidenavComponent,
     WorkSpaceComponent,
     CreateSpaceComponent,
-    SpaceInfoComponent
+    SpaceInfoComponent,
+    CreateIdeaComponent
   ],
   imports: [
     BrowserModule,
@@ -37,6 +39,7 @@ import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.
     BrowserAnimationsModule
   ],
   entryComponents: [
+    CreateIdeaComponent,
     CreateSpaceComponent,
     SpaceInfoComponent
   ],

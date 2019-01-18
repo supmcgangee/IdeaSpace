@@ -17,11 +17,16 @@ export class CreateSpaceComponent implements OnInit {
   }
 
   closeDialog(): void {
-    this.dialogRef.close({ createSpace: this.data.createSpace, name: this.data.name });
+    this.dialogRef.close({ 
+      createSpace: this.data.createSpace, 
+      name: this.data.name, 
+      desc: this.data.desc 
+    });
   }
 }
 
 export interface DialogData {
   createSpace: boolean;
   name: string;
+  desc: string;
 }

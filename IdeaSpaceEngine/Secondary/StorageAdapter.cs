@@ -32,9 +32,15 @@ namespace IdeaSpace.Secondary
 
         public void WriteToFile(string spaceName, Idea idea)
         {
+            var fileDir = rootDir + spaceName;
             var data = JsonConvert.SerializeObject(idea);
-            if (!Directory.Exists(rootDir + spaceName)) Directory.CreateDirectory(rootDir + spaceName);
-            File.WriteAllText(rootDir + spaceName + @"\" + idea.Title + ext, data);
+            if (!Directory.Exists(fileDir)) Directory.CreateDirectory(fileDir);
+            {
+                var spaceData = File.ReadAllText(fileDir + @"\SpaceDat" + ext);
+                var space = JsonConvert.DeserializeObject<Space>(spaceData);
+                if(space.canCreateIdeas)
+                    File.WriteAllText(rootDir + spaceName + @"\" + idea.Title + ext, data);
+            }
         }
 
         public void DeleteFile(string spaceName, string fileName)
@@ -68,7 +74,9 @@ namespace IdeaSpace.Secondary
             var space = new Space
             {
                 Name = "Default Dir",
-                canBeDeleted = false
+                Description = "The Default Directory provided by the program.",
+                canBeDeleted = false,
+                canCreateIdeas = false
             };
 
             WriteToFile(space);

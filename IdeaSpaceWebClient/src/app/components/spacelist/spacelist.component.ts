@@ -36,7 +36,9 @@ export class SpacelistComponent implements OnInit {
           let newspace: Space = new Space;
 
           newspace.Name = space.Name;
+          newspace.Description = space.Description;
           newspace.canBeDeleted = space.canBeDeleted;
+          newspace.canCreateIdeas = space.canCreateIdeas;
 
           this.spaces.push(newspace);
         });
@@ -46,13 +48,15 @@ export class SpacelistComponent implements OnInit {
   openCreateSpaceDialogue() {
     let dialogRef = this.dialog.open(CreateSpaceComponent, {
       width: '230px',
-      data: { name: "" }
+      data: { name: "", desc: "" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result.createSpace == true) {
-        let newSpaceName = result.name;
-        this.createNewSpace(newSpaceName);
+        let newSpace : Space = new Space;
+        newSpace.Name = result.name;
+        newSpace.Description = result.desc;
+        this.createNewSpace(newSpace);
       }
     });
   }
@@ -60,7 +64,12 @@ export class SpacelistComponent implements OnInit {
   openSpaceInfoDialog(space: Space) {
     let dialogRef = this.dialog.open(SpaceInfoComponent, {
       width: '230px',
-      data: { name: space.Name, canBeDeleted: space.canBeDeleted }
+      data: { 
+        name: space.Name, 
+        desc: space.Description,
+        canBeDeleted: space.canBeDeleted,
+        canCreateIdeas: space.canCreateIdeas
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -70,16 +79,13 @@ export class SpacelistComponent implements OnInit {
     });
   }
 
-  async createNewSpace(newSpaceName: string) {
-    if (this.checkName(newSpaceName)) {
-      let newSpace: Space = new Space;
-      newSpace.Name = newSpaceName;
+  async createNewSpace(newSpace: Space) {
+    if (this.checkName(newSpace.Name)) {
       await this.service.createNewSpace(newSpace);
     }
     else{
-      console.error("Invalid name entered: " + newSpaceName)
+      console.error("Invalid name entered: " + newSpace.Name)
     }
-    newSpaceName = '';
     this.updateSpacesList();
   }
 

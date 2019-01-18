@@ -23,5 +23,7 @@ export class SpaceInfoComponent implements OnInit {
 export interface DialogData {
   toDelete: boolean;
   name: string;
+  desc: string;
   canBeDeleted: boolean;
+  canCreateIdeas: boolean;
 }

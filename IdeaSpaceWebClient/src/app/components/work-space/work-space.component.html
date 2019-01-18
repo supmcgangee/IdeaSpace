@@ -3,11 +3,9 @@
     Current Space: {{currentSpace.Name}}
   </span>
   <div>
-    <button (click)="createNewIdea()">
-      +
+    <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog()">
+        <mat-icon>note_add</mat-icon>
     </button>
-    <input matInput placeholder="Title" type="text" [(ngModel)]="newIdeaTitle">
-    <textarea matInput placeholder="Body" rows="4" [(ngModel)]="newIdeaBody"></textarea>
   </div>
   <div *ngFor="let idea of ideas">
     <p>
