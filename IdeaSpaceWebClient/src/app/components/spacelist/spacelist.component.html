@@ -7,7 +7,6 @@
 <h2 class="sidenav-header">
   Space List
 </h2>
-
 <div *ngFor="let space of spaces">
   <button mat-raised-button class="space-button" (click)="updateCurrentSpace(space)">{{space.Name}}</button>
   <button mat-icon-button class="delete-space-button" (click)="openSpaceInfoDialog(space)">

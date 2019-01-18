@@ -10,14 +10,14 @@ export class CreateSpaceComponent implements OnInit {
 
   constructor(
     public dialogRef: MatDialogRef<CreateSpaceComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
     this.data.createSpace = false;
   }
 
   closeDialog(): void {
-      this.dialogRef.close({createSpace: this.data.createSpace, name: this.data.name});
+    this.dialogRef.close({ createSpace: this.data.createSpace, name: this.data.name });
   }
 }
 
