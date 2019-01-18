@@ -9,7 +9,7 @@
   </div>
   <div *ngFor="let idea of ideas">
     <p>
-      <button *ngIf="currentSpace.canBeDeleted == true" (click)="deleteIdea(idea.Title)">-</button>
+      <button (click)="openIdeaInfoDialog(idea)">-</button>
       --{{idea.Title}}--
     </p>
     <p>{{idea.Body}}</p>

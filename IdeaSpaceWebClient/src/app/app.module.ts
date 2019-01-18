@@ -15,6 +15,7 @@ import { WorkSpaceComponent } from './components/work-space/work-space.component
 import { CreateSpaceComponent } from './components/dialogue/create-space/create-space.component';
 import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.component';
 import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
+import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CreateIdeaComponent } from './components/dialogue/create-idea/create-id
     WorkSpaceComponent,
     CreateSpaceComponent,
     SpaceInfoComponent,
-    CreateIdeaComponent
+    CreateIdeaComponent,
+    IdeaInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +43,7 @@ import { CreateIdeaComponent } from './components/dialogue/create-idea/create-id
   entryComponents: [
     CreateIdeaComponent,
     CreateSpaceComponent,
+    IdeaInfoComponent,
     SpaceInfoComponent
   ],
   providers: [],
