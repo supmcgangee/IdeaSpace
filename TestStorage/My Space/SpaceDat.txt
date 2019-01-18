@@ -1,0 +1,1 @@
+{"canBeDeleted":true,"canCreateIdeas":true,"Name":"My Space","Description":"My Space for testing things"}

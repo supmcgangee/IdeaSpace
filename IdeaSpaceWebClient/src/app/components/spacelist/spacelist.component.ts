@@ -47,12 +47,12 @@ export class SpacelistComponent implements OnInit {
 
   openCreateSpaceDialogue() {
     let dialogRef = this.dialog.open(CreateSpaceComponent, {
-      width: '230px',
+      width: '500px',
       data: { name: "", desc: "" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.createSpace == true) {
+      if (result != undefined && result.createSpace == true) {
         let newSpace : Space = new Space;
         newSpace.Name = result.name;
         newSpace.Description = result.desc;
@@ -63,7 +63,7 @@ export class SpacelistComponent implements OnInit {
 
   openSpaceInfoDialog(space: Space) {
     let dialogRef = this.dialog.open(SpaceInfoComponent, {
-      width: '230px',
+      width: '500px',
       data: { 
         name: space.Name, 
         desc: space.Description,
@@ -73,7 +73,7 @@ export class SpacelistComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.toDelete == true) {
+      if (result != undefined && result.toDelete == true) {
         this.deleteSpace(space.Name);
       }
     });

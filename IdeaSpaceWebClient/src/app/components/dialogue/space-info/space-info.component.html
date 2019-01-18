@@ -4,8 +4,16 @@
 <p>{{data.desc}}</p>
 
 <div>
-  <button mat-icon-button *ngIf="data.canBeDeleted == true" (click)="data.toDelete = true; closeDialog();">
-    <mat-icon>delete_forever</mat-icon>
+  <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == false" (click)="deletePrompt();">
+    <mat-icon>delete</mat-icon>
   </button>
-  <button mat-button (click)="closeDialog();">Close</button>
+  <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == true" color="warn" (click)="data.toDelete = true; closeDialog();">
+      <mat-icon>delete_forever</mat-icon>
+  </button>
+  <button mat-button *ngIf="data.canBeDeleted == true" style="left: 75%;" (click)="closeDialog();">Close</button>
+  <button mat-button *ngIf="data.canBeDeleted == false" style="left: 85%;" (click)="closeDialog();">Close</button>
+</div>
+<div *ngIf="deletePromptShown == true" style="color: red;">
+  <p>This Space and all containing data will be deleted.</p>
+  <p><b>Are you sure you wish to continue?</b></p>
 </div>

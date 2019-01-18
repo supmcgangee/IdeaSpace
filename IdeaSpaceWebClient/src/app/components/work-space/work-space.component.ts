@@ -51,12 +51,12 @@ export class WorkSpaceComponent implements OnInit {
 
   openCreateIdeaDialog(){
     let dialogRef = this.dialog.open(CreateIdeaComponent, {
-      width: '230px',
+      width: '500px',
       data: { title: "", body: "" }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result.createIdea == true) {
+      if (result != undefined && result.createIdea == true) {
         let newIdeaTitle = result.title;
         let newIdeaBody = result.body;
         this.createNewIdea(newIdeaTitle, newIdeaBody);

@@ -8,11 +8,17 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class SpaceInfoComponent implements OnInit {
 
+  deletePromptShown : boolean = false;
+
   constructor(public dialogRef: MatDialogRef<SpaceInfoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData) { }
 
   ngOnInit() {
     this.data.toDelete = false;
+  }
+
+  deletePrompt(){
+    this.deletePromptShown = true;
   }
 
   closeDialog(): void {
