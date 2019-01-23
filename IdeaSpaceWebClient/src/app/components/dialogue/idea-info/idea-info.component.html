@@ -1,16 +1,42 @@
-<p>{{data.title}}</p>
-<p *ngIf="data.canBeDeleted == false">This space cannot be deleted</p>
-<p>{{data.body}}</p>
+<div *ngIf="editMode == false">
+  <p>{{data.title}}</p>
+  <p *ngIf="data.canBeDeleted == false">This space cannot be deleted</p>
+  <p>{{data.body}}</p>
+</div>
+
+<div *ngIf="editMode == true">
+  <div>
+    <mat-form-field style="width: 100%">
+      <input matInput placeholder="Title" type="text" autocomplete="off" [(ngModel)]="titleTemp">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field style="width: 100%">
+      <textarea matInput class="textarea" placeholder="Body" rows="4" [(ngModel)]="bodyTemp"></textarea>
+    </mat-form-field>
+  </div>
+</div>
 
 <div>
-  <button mat-icon-button  *ngIf="data.canBeDeleted == true && deletePromptShown == false" (click)="deletePrompt();">
+  <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == false" (click)="deletePrompt();">
     <mat-icon>delete</mat-icon>
   </button>
   <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == true" color="warn" (click)="data.toDelete = true; closeDialog();">
     <mat-icon>delete_forever</mat-icon>
   </button>
-  <button mat-button *ngIf="data.canBeDeleted == true" style="left: 75%;" (click)="closeDialog();">Close</button>
+  <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == true" color="warn"
+    (click)="toggleEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == false" (click)="toggleEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-button *ngIf="data.canBeDeleted == true" class="close-button" style="left: 75%;" (click)="closeDialog();">Close</button>
   <button mat-button *ngIf="data.canBeDeleted == false" style="left: 85%;" (click)="closeDialog();">Close</button>
+</div>
+<div *ngIf="titleTemp != data.title || bodyTemp != data.body" style="color: red;">
+  Your changes have not been saved.
+  <button mat-raised-button *ngIf="editMode == true" color="warn" (click)="saveEdit()">save</button>
 </div>
 <div *ngIf="deletePromptShown == true" style="color: red;">
   <p>This Space and all containing data will be deleted.</p>

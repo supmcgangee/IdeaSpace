@@ -11,3 +11,6 @@
     <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateIdeaList()"></app-idea-card>
   </div>
 </div>
+<div *ngIf="currentSpace.Name == undefined">
+  No Space selected
+</div>

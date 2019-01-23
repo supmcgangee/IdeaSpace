@@ -31,14 +31,32 @@ export class IdeaCardComponent implements OnInit {
   openIdeaInfoDialog(){
     let dialogRef = this.dialog.open(IdeaInfoComponent, {
       width: '500px',
-      data: { title: this.idea.Title, body: this.idea.Body, canBeDeleted: this.currentSpace.canBeDeleted }
+      data: { 
+        title: this.idea.Title, 
+        body: this.idea.Body, 
+        canBeDeleted: this.currentSpace.canBeDeleted, 
+        canBeEdited: this.currentSpace.canCreateIdeas 
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.toSave == true) {
+        this.idea.Title = result.newTitle;
+        this.idea.Body = result.newBody;
+        console.log(this.idea)
+        if(result.oldTitle != result.newTitle)
+          this.deleteIdea(result.oldTitle)
+        this.saveIdea();
+      }
       if (result != undefined && result.toDelete == true) {
         this.deleteIdea(this.idea.Title);
       }
     });
+  }
+
+  async saveIdea(){
+    await this.service.createNewIdea(this.currentSpace.Name, this.idea);
+    this.emitter.emit();
   }
 
   async deleteIdea(ideaTitle: string) {
