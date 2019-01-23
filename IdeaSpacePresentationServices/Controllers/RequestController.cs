@@ -46,6 +46,13 @@ namespace IdeaSpacePresentationServices.Controllers
             return Ok(requestHandler.GetAllIdeas(spaceId));
         }
 
+        [Route("getGroupsInSpace/{spaceId}")]
+        [HttpGet]
+        public ActionResult GetAllGroupsInSpace([FromRoute] string spaceId)
+        {
+            return Ok(requestHandler.GetAllGroups(spaceId));
+        }
+
         [Route("deleteSpace/{spaceId}")]
         [HttpDelete]
         public ActionResult DeleteSpace([FromRoute] string spaceId)

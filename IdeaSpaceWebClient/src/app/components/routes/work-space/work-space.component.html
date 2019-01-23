@@ -3,12 +3,17 @@
     Current Space: {{currentSpace.Name}}
   </span>
   <div>
-    <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog()">
-        <mat-icon>note_add</mat-icon>
-    </button>
-  </div>
-  <div *ngFor="let idea of ideas">
-    <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateIdeaList()"></app-idea-card>
+    <mat-card class="group-block" *ngFor="let group of groups">
+      <div style="padding-bottom: 10px;">
+        <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog()">
+          <mat-icon>note_add</mat-icon>
+        </button>
+        {{group.Name}}
+      </div>
+      <div class="card-row">
+        <app-idea-card *ngFor="let idea of group.Ideas" [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateIdeaList()"></app-idea-card>
+      </div>
+    </mat-card>
   </div>
 </div>
 <div *ngIf="currentSpace.Name == undefined">

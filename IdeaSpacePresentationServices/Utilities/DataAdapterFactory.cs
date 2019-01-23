@@ -11,7 +11,8 @@ namespace IdeaSpacePresentationServices.Utilities
             IStorageAdapter storageAdapter = new  StorageAdapter();
             ISpaceManager spaceManager = new SpaceManager(storageAdapter);
             IIdeaManager ideaManager = new IdeaManager(storageAdapter);
-            return new RequestHandler(spaceManager, ideaManager);
+            IGroupManager groupManager = new GroupManager(storageAdapter);
+            return new RequestHandler(spaceManager, ideaManager, groupManager);
         }
     }
 }

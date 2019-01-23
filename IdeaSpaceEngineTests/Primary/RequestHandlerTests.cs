@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Newtonsoft.Json;
 using IdeaSpace.Models;
 using IdeaSpace.Primary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -13,12 +12,13 @@ namespace IdeaSpaceTests.Primary
         private RequestHandler requestHandler;
         private readonly Mock<ISpaceManager> spaceManagerMock = new Mock<ISpaceManager>();
         private readonly Mock<IIdeaManager> ideaManagerMock = new Mock<IIdeaManager>();
+        private readonly Mock<IGroupManager> groupManagerMock = new Mock<IGroupManager>();
         private const string spaceId = "space";
 
         [TestInitialize]
         public void SetUp()
         {
-            requestHandler = new RequestHandler(spaceManagerMock.Object, ideaManagerMock.Object);
+            requestHandler = new RequestHandler(spaceManagerMock.Object, ideaManagerMock.Object, groupManagerMock.Object);
         }
 
         [TestMethod]
@@ -65,6 +65,18 @@ namespace IdeaSpaceTests.Primary
             requestHandler.GetAllIdeas(spaceId);
 
             ideaManagerMock.Verify(mock => mock.GetAllIdeas());
+        }
+
+        [TestMethod]
+        public void VerifyThatCanOrganizeIdeasFromSpaceIntoGroups()
+        {
+            var testList = new List<Group>();
+
+            groupManagerMock.Setup(mock => mock.OrganiseIdeasIntoGroups(It.IsAny<string>())).Returns(testList);
+
+            requestHandler.GetAllGroups(spaceId);
+
+            groupManagerMock.Verify(mock => mock.OrganiseIdeasIntoGroups(It.IsAny<string>()));
         }
 
         [TestMethod]

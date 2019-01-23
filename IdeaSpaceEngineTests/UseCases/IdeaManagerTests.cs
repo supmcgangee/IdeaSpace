@@ -1,4 +1,5 @@
-﻿using IdeaSpace.Models;
+﻿using System.Collections.Generic;
+using IdeaSpace.Models;
 using IdeaSpace.Secondary;
 using IdeaSpace.UseCases;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -28,17 +29,19 @@ namespace IdeaSpaceTests.UseCases
 
             storageAdapterMock.Setup(mock => mock.ReadIdeaFromFile(filePath + knownTitle + ext))
                 .Returns(new Idea { Title = knownTitle });
+            storageAdapterMock.Setup(mock => mock.ReadAllIdeas(It.IsAny<string>()))
+                .Returns(new List<Idea> { new Idea { Title = knownTitle, Body = "test", ParentGroup = "A" }});
         }
         
         [TestMethod]
         public void CanCreateAIdeaInCurrentSpace()
         {
             testIdea = new Idea { Title = knownTitle, Body = "NewTestBody" };
-            storageAdapterMock.Setup(mock => mock.WriteToFile(knownId, testIdea));
+            storageAdapterMock.Setup(mock => mock.WriteToFile(knownId, testIdea, false));
 
             ideaManager.SaveIdea(testIdea);
 
-            storageAdapterMock.Verify(mock => mock.WriteToFile(It.IsAny<string>(), It.IsAny<Idea>()));
+            storageAdapterMock.Verify(mock => mock.WriteToFile(It.IsAny<string>(), It.IsAny<Idea>(), false));
         }
         
         [TestMethod]

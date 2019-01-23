@@ -12,7 +12,7 @@ namespace IdeaSpaceTests.UseCases
     {
         private SpaceManager spaceManager;
         private readonly Mock<IStorageAdapter> storageAdapterMock = new Mock<IStorageAdapter>();
-        private const string knownId = "Default Dir"; //CHANGED FROM TestSpace
+        private const string knownId = "Default Dir";
 
         [TestInitialize]
         public void SetUp()

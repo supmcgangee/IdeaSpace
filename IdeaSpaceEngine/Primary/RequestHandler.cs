@@ -1,5 +1,4 @@
-﻿using System;
-using IdeaSpace.Models;
+﻿using IdeaSpace.Models;
 using Newtonsoft.Json;
 
 namespace IdeaSpace.Primary
@@ -8,11 +7,13 @@ namespace IdeaSpace.Primary
     {
         private readonly ISpaceManager spaceManager;
         private readonly IIdeaManager ideaManager;
+        private readonly IGroupManager groupManager;
 
-        public RequestHandler(ISpaceManager spaceManager, IIdeaManager ideaManager)
+        public RequestHandler(ISpaceManager spaceManager, IIdeaManager ideaManager, IGroupManager groupManager)
         {
             this.spaceManager = spaceManager;
             this.ideaManager = ideaManager;
+            this.groupManager = groupManager;
         }
 
         public void CreateNewSpace(Space data)
@@ -36,6 +37,14 @@ namespace IdeaSpace.Primary
         {
             ideaManager.ChangeCurrentSpaceDir(spaceId);
             var data = JsonConvert.SerializeObject(ideaManager.GetAllIdeas());
+
+            return data;
+        }
+
+        public string GetAllGroups(string spaceId)
+        {
+            ideaManager.ChangeCurrentSpaceDir(spaceId);
+            var data = JsonConvert.SerializeObject(groupManager.OrganiseIdeasIntoGroups(spaceId));
 
             return data;
         }

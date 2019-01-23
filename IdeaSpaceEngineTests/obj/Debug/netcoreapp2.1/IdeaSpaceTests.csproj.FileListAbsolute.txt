@@ -15,3 +15,5 @@ C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngineTests\obj\Debug
 C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngineTests\obj\Debug\netcoreapp2.1\IdeaSpaceTests.csproj.CopyComplete
 C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngineTests\obj\Debug\netcoreapp2.1\IdeaSpaceTests.dll
 C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngineTests\obj\Debug\netcoreapp2.1\IdeaSpaceTests.pdb
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngineTests\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.SignalR.Core.dll
+C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\IdeaSpaceEngineTests\bin\Debug\netcoreapp2.1\Microsoft.AspNetCore.SignalR.Core.xml

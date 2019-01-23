@@ -4,6 +4,7 @@ import { Idea } from '../../models/idea';
 import { WorkSpaceService } from './work-space.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
+import { Group } from '../../models/group';
 
 @Component({
   selector: 'app-work-space',
@@ -14,6 +15,7 @@ import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.comp
 export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
+  private groups: Group[] = [];
   private ideas: Idea[] = [];
 
   columns : number;
@@ -23,6 +25,7 @@ export class WorkSpaceComponent implements OnInit {
   set changeSpace(currentSpace: Space) {
     this.currentSpace = currentSpace;
     if (this.currentSpace.Name != undefined) {
+      this.updateGroupList();
       this.updateIdeaList();
     }
   }
@@ -33,6 +36,23 @@ export class WorkSpaceComponent implements OnInit {
 
   ngOnInit() {
 
+  }
+
+  async updateGroupList(){
+    if(!this.currentSpace.Name != null){
+      await this.service.getAllGroups(this.currentSpace.Name)
+        .then(data => {
+          this.groups = [];
+          data.forEach(group => {
+            let newGroup: Group = new Group;
+            
+            newGroup.Name = group.Name;
+            newGroup.Ideas = group.Ideas;
+
+            this.groups.push(newGroup);
+          });
+        });
+    }
   }
 
   async updateIdeaList() {

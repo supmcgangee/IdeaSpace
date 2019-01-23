@@ -60,16 +60,7 @@ namespace IdeaSpace.UseCases
 
         public List<Idea> GetAllIdeas()
         {
-            ideaList = new List<Idea>();
-            if (!Directory.Exists(rootDir + currentSpaceDir)) return ideaList;
-            var files = Directory.GetFiles(rootDir + currentSpaceDir);
-            foreach (var file in files)
-            {
-                if(file.EndsWith("SpaceDat" + ext)) continue;
-
-                var idea = storageAdapter.ReadIdeaFromFile(file);
-                ideaList.Add(idea);
-            }
+            ideaList = storageAdapter.ReadAllIdeas(rootDir + currentSpaceDir);
             
             return ideaList;
         }
