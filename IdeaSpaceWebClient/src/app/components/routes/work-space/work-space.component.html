@@ -1,25 +1,17 @@
 <div *ngIf="currentSpace.Name != undefined">
-  <span>
-    Current Space: {{currentSpace.Name}}
-  </span>
-  <div>
-    <mat-card class="group-block" *ngFor="let group of groups">
-      <div style="padding-bottom: 5px;">
-        <button mat-icon-button (click)="group.open = !group.open">
-          <mat-icon *ngIf="group.open == false">add_circle</mat-icon>
-          <mat-icon *ngIf="group.open == true">cancel</mat-icon>
-        </button>
-        <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog(group.Name)">
-          <mat-icon>note_add</mat-icon>
-        </button>
-        {{group.Name}}
-      </div>
-      <div class="card-row" *ngIf="group.open == true">
-        <app-idea-card *ngFor="let idea of group.Ideas" [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
-      </div>
-    </mat-card>
-  </div>
-</div>
-<div *ngIf="currentSpace.Name == undefined">
-  No Space selected
+  <mat-card class="group-block" *ngFor="let group of groups">
+    <div style="padding-bottom: 5px;">
+      <button mat-icon-button (click)="group.open = !group.open">
+        <mat-icon *ngIf="group.open == false">add_circle</mat-icon>
+        <mat-icon *ngIf="group.open == true">cancel</mat-icon>
+      </button>
+      <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog(group.Name)">
+        <mat-icon>note_add</mat-icon>
+      </button>
+      {{group.Name}}
+    </div>
+    <div class="card-row" *ngIf="group.open == true">
+      <app-idea-card *ngFor="let idea of group.Ideas" [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
+    </div>
+  </mat-card>
 </div>

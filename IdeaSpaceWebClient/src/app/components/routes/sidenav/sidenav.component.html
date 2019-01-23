@@ -3,14 +3,15 @@
     <app-spacelist (spaceEmitter)="updateCurrentSpace($event)"></app-spacelist>
   </mat-drawer>
   <mat-drawer-content class="sidenav-content">
-    <span>
       <button mat-icon-button style="min-width: 0px" *ngIf="sidenavOpened == true" (click)="toggleSidenav()">
-          <mat-icon>chevron_left</mat-icon>
+        <mat-icon>chevron_left</mat-icon>
       </button>
       <button mat-icon-button style="min-width: 0px" *ngIf="sidenavOpened == false" (click)="toggleSidenav()">
-          <mat-icon>bookmarks</mat-icon>
+        <mat-icon>bookmarks</mat-icon>
       </button>
-    </span>
+      <h2 class="mat-h2" *ngIf="selectedSpace != null">
+        Current Space: {{selectedSpace.Name}}
+      </h2>
     <app-work-space [changeSpace]="selectedSpace"></app-work-space>
   </mat-drawer-content>
 </mat-drawer-container>
