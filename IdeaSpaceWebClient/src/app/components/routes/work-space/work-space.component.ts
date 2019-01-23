@@ -16,7 +16,6 @@ export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
   private groups: Group[] = [];
-  private ideas: Idea[] = [];
 
   columns: number;
   rows: number;
