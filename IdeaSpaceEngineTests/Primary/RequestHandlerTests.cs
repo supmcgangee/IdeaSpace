@@ -56,18 +56,6 @@ namespace IdeaSpaceTests.Primary
         }
 
         [TestMethod]
-        public void VerifyThatCanGetAllIdeasFromSpace()
-        {
-            var testList = new List<Idea>();
-
-            ideaManagerMock.Setup(mock => mock.GetAllIdeas()).Returns(testList);
-
-            requestHandler.GetAllIdeas(spaceId);
-
-            ideaManagerMock.Verify(mock => mock.GetAllIdeas());
-        }
-
-        [TestMethod]
         public void VerifyThatCanOrganizeIdeasFromSpaceIntoGroups()
         {
             var testList = new List<Group>();

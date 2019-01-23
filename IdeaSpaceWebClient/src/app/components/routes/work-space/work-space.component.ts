@@ -18,15 +18,14 @@ export class WorkSpaceComponent implements OnInit {
   private groups: Group[] = [];
   private ideas: Idea[] = [];
 
-  columns : number;
-  rows : number; 
+  columns: number;
+  rows: number;
 
   @Input()
   set changeSpace(currentSpace: Space) {
     this.currentSpace = currentSpace;
     if (this.currentSpace.Name != undefined) {
       this.updateGroupList();
-      this.updateIdeaList();
     }
   }
 
@@ -38,14 +37,14 @@ export class WorkSpaceComponent implements OnInit {
 
   }
 
-  async updateGroupList(){
-    if(!this.currentSpace.Name != null){
+  async updateGroupList() {
+    if (!this.currentSpace.Name != null) {
       await this.service.getAllGroups(this.currentSpace.Name)
         .then(data => {
           this.groups = [];
           data.forEach(group => {
             let newGroup: Group = new Group;
-            
+
             newGroup.Name = group.Name;
             newGroup.Ideas = group.Ideas;
 
@@ -55,24 +54,7 @@ export class WorkSpaceComponent implements OnInit {
     }
   }
 
-  async updateIdeaList() {
-    if (!this.currentSpace.Name != null) {
-      await this.service.getAllIdeas(this.currentSpace.Name)
-        .then(data => {
-          this.ideas = [];
-          data.forEach(idea => {
-            let newIdea: Idea = new Idea;
-
-            newIdea.Title = idea.Title;
-            newIdea.Body = idea.Body;
-
-            this.ideas.push(newIdea);
-          });
-        });
-    }
-  }
-
-  openCreateIdeaDialog() {
+  openCreateIdeaDialog(group: string) {
     let dialogRef = this.dialog.open(CreateIdeaComponent, {
       width: '500px',
       data: { title: "", body: "" }
@@ -82,19 +64,20 @@ export class WorkSpaceComponent implements OnInit {
       if (result != undefined && result.createIdea == true) {
         let newIdeaTitle = result.title;
         let newIdeaBody = result.body;
-        this.createNewIdea(newIdeaTitle, newIdeaBody);
+        this.createNewIdea(newIdeaTitle, newIdeaBody, group);
       }
     });
   }
 
-  async createNewIdea(newIdeaTitle: string, newIdeaBody: string) {
+  async createNewIdea(newIdeaTitle: string, newIdeaBody: string, parentGroup: string) {
     if (newIdeaTitle != "") {
       let newIdea: Idea = new Idea;
       newIdea.Title = newIdeaTitle;
       newIdea.Body = newIdeaBody;
+      newIdea.ParentGroup = parentGroup;
 
       await this.service.createNewIdea(this.currentSpace.Name, newIdea);
-      this.updateIdeaList();
+      this.updateGroupList();
     }
   }
 }

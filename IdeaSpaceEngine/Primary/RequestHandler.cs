@@ -33,14 +33,6 @@ namespace IdeaSpace.Primary
             return data;
         }
 
-        public string GetAllIdeas(string spaceId)
-        {
-            ideaManager.ChangeCurrentSpaceDir(spaceId);
-            var data = JsonConvert.SerializeObject(ideaManager.GetAllIdeas());
-
-            return data;
-        }
-
         public string GetAllGroups(string spaceId)
         {
             ideaManager.ChangeCurrentSpaceDir(spaceId);

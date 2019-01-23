@@ -12,10 +12,6 @@ export class WorkSpaceService {
 
   constructor(private http: HttpClient) { }
 
-  getAllIdeas(spaceId: string): Promise<Idea[]> {
-    return this.http.get<Idea[]>(this.uri + "api/request/getIdeasInSpace/" + spaceId).toPromise();
-  }
-
   getAllGroups(spaceId: string): Promise<Group[]> {
     return this.http.get<Group[]>(this.uri + "api/request/getGroupsInSpace/" + spaceId).toPromise();
   }

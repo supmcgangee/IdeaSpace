@@ -1,1 +1,1 @@
-{"canBeDeleted":false,"canCreateIdeas":false,"Name":"Default Dir","Description":"The Default Directory provided by the program."}
+{"canBeDeleted":false,"canCreateIdeas":true,"Name":"Default Dir","Description":null}

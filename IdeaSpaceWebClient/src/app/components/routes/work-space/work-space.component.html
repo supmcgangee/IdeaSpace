@@ -4,8 +4,8 @@
   </span>
   <div>
     <mat-card class="group-block" *ngFor="let group of groups">
-      <div style="padding-bottom: 10px;">
-        <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog()">
+      <div style="padding-bottom: 5px;">
+        <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog(group.Name)">
           <mat-icon>note_add</mat-icon>
         </button>
         {{group.Name}}

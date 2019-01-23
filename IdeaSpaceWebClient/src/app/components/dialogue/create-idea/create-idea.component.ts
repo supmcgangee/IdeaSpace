@@ -14,6 +14,7 @@ export class CreateIdeaComponent implements OnInit {
 
   ngOnInit() {
     this.data.createIdea = false;
+
   }
 
   closeDialog(){

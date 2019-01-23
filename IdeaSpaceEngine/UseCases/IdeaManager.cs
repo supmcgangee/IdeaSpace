@@ -58,7 +58,7 @@ namespace IdeaSpace.UseCases
             storageAdapter.DeleteFile(currentSpaceDir, title);
         }
 
-        public List<Idea> GetAllIdeas()
+        private List<Idea> GetAllIdeas()
         {
             ideaList = storageAdapter.ReadAllIdeas(rootDir + currentSpaceDir);
             

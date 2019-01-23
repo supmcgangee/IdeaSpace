@@ -7,7 +7,6 @@ namespace IdeaSpace.Primary
     {
         void ChangeCurrentSpaceDir(string spaceId);
         void SaveIdea(Idea idea);
-        List<Idea> GetAllIdeas();
         void DeleteIdeaWithTitle(string title);
     }
 }
