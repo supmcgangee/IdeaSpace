@@ -30,7 +30,7 @@ export class IdeaCardComponent implements OnInit {
 
   openIdeaInfoDialog(){
     let dialogRef = this.dialog.open(IdeaInfoComponent, {
-      width: '500px',
+      width: '650px',
       data: { 
         title: this.idea.Title, 
         body: this.idea.Body, 

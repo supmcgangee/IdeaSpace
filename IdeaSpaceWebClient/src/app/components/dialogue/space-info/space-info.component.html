@@ -1,19 +1,19 @@
-<p>Space Name: {{data.name}}</p>
-<p *ngIf="data.canBeDeleted == false">This space cannot be deleted</p>
-<p *ngIf="data.canCreateIdeas == false">You cannot create Ideas within this Space</p>
-<p>{{data.desc}}</p>
+<p class="mat-body">Space Name: {{data.name}}</p>
+<p class="mat-small hint" *ngIf="data.canBeDeleted == false">*This space cannot be deleted</p>
+<p class="mat-small hint" *ngIf="data.canCreateIdeas == false">*You cannot create Ideas within this Space</p>
+<p class="mat-body">{{data.desc}}</p>
 
 <div>
-  <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == false" (click)="deletePrompt();">
-    <mat-icon>delete</mat-icon>
-  </button>
-  <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == true" color="warn" (click)="data.toDelete = true; closeDialog();">
-    <mat-icon>delete_forever</mat-icon>
+  <button mat-icon-button *ngIf="data.canBeDeleted == true" (click)="deletePrompt(true);">
+    <mat-icon *ngIf="deletePromptShown == false">delete</mat-icon>
+    <mat-icon *ngIf="deletePromptShown == true" color="warn">delete_forever</mat-icon>
   </button>
   <button mat-button *ngIf="data.canBeDeleted == true" style="left: 75%;" (click)="closeDialog();">Close</button>
   <button mat-button *ngIf="data.canBeDeleted == false" style="left: 85%;" (click)="closeDialog();">Close</button>
 </div>
-<div *ngIf="deletePromptShown == true" style="color: red;">
-  <p>This Space and all containing data will be deleted.</p>
-  <p><b>Are you sure you wish to continue?</b></p>
+<div *ngIf="deletePromptShown == true">
+  <p class="mat-small" style="color: red;">This Space and all containing data will be deleted.</p>
+  <p class="mat-small" style="color: red;"><b>Are you sure you wish to continue?</b></p>
+  <button mat-button color="warn" (click)="data.toDelete = true; closeDialog();">Delete</button>
+  <button mat-button style="left: 66%;" (click)="deletePrompt(false);">Cancel</button>
 </div>

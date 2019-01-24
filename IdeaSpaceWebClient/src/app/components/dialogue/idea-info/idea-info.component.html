@@ -1,7 +1,7 @@
 <div *ngIf="editMode == false">
-  <p>{{data.title}}</p>
-  <p *ngIf="data.canBeDeleted == false">This space cannot be deleted</p>
-  <p>{{data.body}}</p>
+  <p class="mat-body">{{data.title}}</p>
+  <p class="mat-small hint" *ngIf="data.canBeDeleted == false">*This Idea cannot be deleted</p>
+  <p class="mat-body">{{data.body}}</p>
 </div>
 
 <div *ngIf="editMode == true">
@@ -34,11 +34,11 @@
   <button mat-button *ngIf="data.canBeDeleted == true" class="close-button" style="left: 75%;" (click)="closeDialog();">Close</button>
   <button mat-button *ngIf="data.canBeDeleted == false" style="left: 85%;" (click)="closeDialog();">Close</button>
 </div>
-<div *ngIf="titleTemp != data.title || bodyTemp != data.body" style="color: red;">
+<div class="mat-small" *ngIf="titleTemp != data.title || bodyTemp != data.body" style="color: red;">
   Your changes have not been saved.
   <button mat-raised-button *ngIf="editMode == true" color="warn" (click)="saveEdit()">save</button>
 </div>
 <div *ngIf="deletePromptShown == true" style="color: red;">
-  <p>This Space and all containing data will be deleted.</p>
-  <p><b>Are you sure you wish to continue?</b></p>
+  <p class="mat-small">This Space and all containing data will be deleted.</p>
+  <p class="mat-small"><b>Are you sure you wish to continue?</b></p>
 </div>
