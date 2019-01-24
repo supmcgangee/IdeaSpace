@@ -5,6 +5,8 @@ import { WorkSpaceService } from './work-space.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
 import { Group } from '../../models/group';
+import { GroupedObservable } from 'rxjs';
+import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-work-space',
@@ -17,8 +19,8 @@ export class WorkSpaceComponent implements OnInit {
   private currentSpace: Space = new Space;
   private groups: Group[] = [];
 
-  columns: number;
-  rows: number;
+  groupCreateMode: boolean = false;
+  groupCreateName: string = "";
 
   @Input()
   set changeSpace(currentSpace: Space) {
@@ -78,5 +80,17 @@ export class WorkSpaceComponent implements OnInit {
       await this.service.createNewIdea(this.currentSpace.Name, newIdea);
       this.updateGroupList();
     }
+  }
+
+  editNewGroup() {
+    this.groupCreateMode = true;
+  }
+
+  createNewGroup(){
+    this.groupCreateMode = false;
+    let newGroup : Group = new Group;
+    newGroup.Name = this.groupCreateName;
+    newGroup.Ideas = [];
+    this.groups.push(newGroup);
   }
 }

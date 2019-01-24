@@ -3,7 +3,19 @@
     margin: 5px;
     margin-top: 10px;
     background-color: rgb(241, 241, 241);
+    max-height: 325px;
+    overflow: scroll;
+    overflow-y: hidden !important;
 }
+
+.new-group-block{
+    padding: 5px;
+    margin: 5px;
+    margin-top: 10px;
+    background-color: rgb(241, 241, 241);
+    width: 140px;
+}
+
 .card-row{
     display: flex;
     flex-direction: row;
