@@ -28,6 +28,12 @@ export class IdeaCardComponent implements OnInit {
   ngOnInit() {
   }
 
+  calcOverLength() : boolean{
+    if(this.idea.Body.length >= 250)
+      return true;
+    return false;
+  }
+
   openIdeaInfoDialog(){
     let dialogRef = this.dialog.open(IdeaInfoComponent, {
       width: '650px',

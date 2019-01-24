@@ -5,8 +5,6 @@ import { WorkSpaceService } from './work-space.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
 import { Group } from '../../models/group';
-import { GroupedObservable } from 'rxjs';
-import { timingSafeEqual } from 'crypto';
 
 @Component({
   selector: 'app-work-space',
@@ -39,6 +37,7 @@ export class WorkSpaceComponent implements OnInit {
   }
 
   async updateGroupList() {
+    this.groups = [];
     if (!this.currentSpace.Name != null) {
       await this.service.getAllGroups(this.currentSpace.Name)
         .then(data => {
