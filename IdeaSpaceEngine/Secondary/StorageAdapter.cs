@@ -89,6 +89,7 @@ namespace IdeaSpace.Secondary
             {
                 Name = "Default Dir",
                 Description = "The Default Directory provided by the program.",
+                Groups = new string[]{"Default Group"},
                 canBeDeleted = false,
                 canCreateIdeas = false
             };

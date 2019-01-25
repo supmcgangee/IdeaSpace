@@ -25,13 +25,13 @@ export class IdeaInfoComponent implements OnInit {
     this.bodyTemp = this.data.body;
   }
 
-  toggleEdit(){
+  toggleEdit() {
     this.editMode = !this.editMode;
     this.titleTemp = this.data.title;
     this.bodyTemp = this.data.body;
   }
 
-  saveEdit(){
+  saveEdit() {
     this.data.toSave = true;
     this.editMode = false;
     this.oldTitle = this.data.title;
@@ -45,7 +45,7 @@ export class IdeaInfoComponent implements OnInit {
   }
 
   closeDialog(): void {
-    this.dialogRef.close({ 
+    this.dialogRef.close({
       toDelete: this.data.toDelete,
       toSave: this.data.toSave,
       newTitle: this.data.title,
@@ -60,6 +60,7 @@ export interface DialogData {
   toSave: boolean;
   title: string;
   body: string;
+  parent: string;
   canBeDeleted: boolean;
   canBeEdited: boolean;
 }

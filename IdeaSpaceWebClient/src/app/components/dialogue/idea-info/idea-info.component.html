@@ -1,5 +1,5 @@
 <div *ngIf="editMode == false">
-  <p class="mat-body">{{data.title}}</p>
+  <p class="mat-body">{{data.parent}}/{{data.title}}</p>
   <p class="mat-small hint" *ngIf="data.canBeDeleted == false">*This Idea cannot be deleted</p>
   <p class="mat-body">{{data.body}}</p>
 </div>
@@ -24,8 +24,7 @@
   <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == true" color="warn" (click)="data.toDelete = true; closeDialog();">
     <mat-icon>delete_forever</mat-icon>
   </button>
-  <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == true" color="warn"
-    (click)="toggleEdit()">
+  <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == true" color="warn" (click)="toggleEdit()">
     <mat-icon>edit</mat-icon>
   </button>
   <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == false" (click)="toggleEdit()">

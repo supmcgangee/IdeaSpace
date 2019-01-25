@@ -14,7 +14,7 @@ export class IdeaCardComponent implements OnInit {
 
   @Output() emitter = new EventEmitter();
 
-  hovering : boolean;
+  hovering: boolean;
 
   @Input()
   idea: Idea;
@@ -28,20 +28,21 @@ export class IdeaCardComponent implements OnInit {
   ngOnInit() {
   }
 
-  calcOverLength() : boolean{
-    if(this.idea.Body.length >= 250)
+  calcOverLength(): boolean {
+    if (this.idea.Body.length >= 250)
       return true;
     return false;
   }
 
-  openIdeaInfoDialog(){
+  openIdeaInfoDialog() {
     let dialogRef = this.dialog.open(IdeaInfoComponent, {
       width: '650px',
-      data: { 
-        title: this.idea.Title, 
-        body: this.idea.Body, 
-        canBeDeleted: this.currentSpace.canBeDeleted, 
-        canBeEdited: this.currentSpace.canCreateIdeas 
+      data: {
+        title: this.idea.Title,
+        body: this.idea.Body,
+        parent: this.idea.ParentGroup,
+        canBeDeleted: this.currentSpace.canBeDeleted,
+        canBeEdited: this.currentSpace.canCreateIdeas
       }
     });
 
@@ -50,7 +51,7 @@ export class IdeaCardComponent implements OnInit {
         this.idea.Title = result.newTitle;
         this.idea.Body = result.newBody;
         console.log(this.idea)
-        if(result.oldTitle != result.newTitle)
+        if (result.oldTitle != result.newTitle)
           this.deleteIdea(result.oldTitle)
         this.saveIdea();
       }
@@ -60,7 +61,7 @@ export class IdeaCardComponent implements OnInit {
     });
   }
 
-  async saveIdea(){
+  async saveIdea() {
     await this.service.createNewIdea(this.currentSpace.Name, this.idea);
     this.emitter.emit();
   }

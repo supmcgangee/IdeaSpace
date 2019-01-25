@@ -15,7 +15,7 @@ import { Group } from '../../models/group';
 export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
-  private groups: Group[] = [];
+  private allGroups: Group[] = [];
 
   groupCreateMode: boolean = false;
   groupCreateName: string = "";
@@ -37,20 +37,40 @@ export class WorkSpaceComponent implements OnInit {
   }
 
   async updateGroupList() {
-    this.groups = [];
-    if (!this.currentSpace.Name != null) {
-      await this.service.getAllGroups(this.currentSpace.Name)
-        .then(data => {
-          this.groups = [];
-          data.forEach(group => {
-            let newGroup: Group = new Group;
+    this.allGroups = [];
+    if (this.currentSpace.Groups == null) {
+      this.currentSpace.Groups = [];
+    }
+    this.currentSpace.Groups.forEach(group => {
+      let newGroup: Group = new Group;
+      newGroup.Name = group;
+      newGroup.Ideas = [];
+      this.allGroups.push(newGroup);
+    });
 
-            newGroup.Name = group.Name;
-            newGroup.Ideas = group.Ideas;
+    let foundGroups = await this.service.getAllGroups(this.currentSpace.Name);
+    let unhandledGroup = new Group;
+    unhandledGroup.Ideas = [];
 
-            this.groups.push(newGroup);
-          });
+    foundGroups.forEach(group => {
+      let index = this.allGroups.findIndex(g => g.Name == group.Name)
+      if (index >= 0) {
+        this.allGroups[index].Ideas = [];
+        group.Ideas.forEach(idea => {
+          this.allGroups[index].Ideas.push(idea)
         });
+        group.Ideas;
+      }
+      else {
+        unhandledGroup.Name = "-Unhandled-";
+        group.Ideas.forEach(idea => {
+          unhandledGroup.Ideas.push(idea);
+        });
+      }
+    });
+
+    if (unhandledGroup.Ideas.length > 0) {
+      this.allGroups.push(unhandledGroup);
     }
   }
 
@@ -85,11 +105,10 @@ export class WorkSpaceComponent implements OnInit {
     this.groupCreateMode = true;
   }
 
-  createNewGroup(){
+  async createNewGroup() {
     this.groupCreateMode = false;
-    let newGroup : Group = new Group;
-    newGroup.Name = this.groupCreateName;
-    newGroup.Ideas = [];
-    this.groups.push(newGroup);
+    this.currentSpace.Groups.push(this.groupCreateName);
+    await this.service.createNewSpace(this.currentSpace);
+    this.updateGroupList();
   }
 }

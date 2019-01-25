@@ -1,5 +1,5 @@
 <div *ngIf="currentSpace.Name != undefined">
-  <mat-card class="group-block" *ngFor="let group of groups">
+  <mat-card class="group-block" *ngFor="let group of allGroups">
     <div style="padding-bottom: 5px;">
       <button mat-icon-button *ngIf="group.Ideas.length > 0" (click)="group.open = !group.open">
         <mat-icon *ngIf="group.open == false">chevron_right</mat-icon>
@@ -12,7 +12,7 @@
       <h2 class="mat-h2" *ngIf="group.Ideas.length == 0">Empty Groups will not be saved, to save please create an Idea</h2>
     </div>
     <div class="card-row" *ngIf="group.open == true">
-      
+
       <app-idea-card *ngFor="let idea of group.Ideas" [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
     </div>
   </mat-card>

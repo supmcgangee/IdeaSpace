@@ -38,6 +38,7 @@ export class SpacelistComponent implements OnInit {
 
           newspace.Name = space.Name;
           newspace.Description = space.Description;
+          newspace.Groups = space.Groups;
           newspace.canBeDeleted = space.canBeDeleted;
           newspace.canCreateIdeas = space.canCreateIdeas;
 
@@ -54,7 +55,7 @@ export class SpacelistComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined && result.createSpace == true) {
-        let newSpace : Space = new Space;
+        let newSpace: Space = new Space;
         newSpace.Name = result.name;
         newSpace.Description = result.desc;
         this.createNewSpace(newSpace);
@@ -65,8 +66,8 @@ export class SpacelistComponent implements OnInit {
   openSpaceInfoDialog(space: Space) {
     let dialogRef = this.dialog.open(SpaceInfoComponent, {
       width: '500px',
-      data: { 
-        name: space.Name, 
+      data: {
+        name: space.Name,
         desc: space.Description,
         canBeDeleted: space.canBeDeleted,
         canCreateIdeas: space.canCreateIdeas
@@ -84,7 +85,7 @@ export class SpacelistComponent implements OnInit {
     if (this.checkName(newSpace.Name)) {
       await this.service.createNewSpace(newSpace);
     }
-    else{
+    else {
       console.error("Invalid name entered: " + newSpace.Name)
     }
     this.updateSpacesList();
@@ -99,7 +100,7 @@ export class SpacelistComponent implements OnInit {
 
   checkName(name: string): boolean {
     console.log(name);
-    switch(name){
+    switch (name) {
       case null:
       case undefined:
       case "":
