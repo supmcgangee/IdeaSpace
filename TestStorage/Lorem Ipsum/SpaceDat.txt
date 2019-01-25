@@ -1,1 +1,1 @@
-{"canBeDeleted":true,"canCreateIdeas":true,"Name":"Lorem Ipsum","Description":"Lorem ipsum test","Groups":["Test"]}
+{"canBeDeleted":true,"canCreateIdeas":true,"Name":"Lorem Ipsum","Description":"Lorem ipsum test","Groups":[]}

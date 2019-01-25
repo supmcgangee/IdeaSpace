@@ -18,6 +18,7 @@ import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.
 import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
 import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.component';
 import { IdeaCardComponent } from './components/routes/idea-card/idea-card.component';
+import { GroupInfoComponent } from './components/dialogue/group-info/group-info.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { IdeaCardComponent } from './components/routes/idea-card/idea-card.compo
     SpaceInfoComponent,
     CreateIdeaComponent,
     IdeaInfoComponent,
-    IdeaCardComponent
+    IdeaCardComponent,
+    GroupInfoComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +51,7 @@ import { IdeaCardComponent } from './components/routes/idea-card/idea-card.compo
     CreateIdeaComponent,
     CreateSpaceComponent,
     IdeaInfoComponent,
+    GroupInfoComponent,
     SpaceInfoComponent
   ],
   providers: [],

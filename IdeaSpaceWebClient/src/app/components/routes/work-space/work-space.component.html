@@ -1,5 +1,5 @@
 <div *ngIf="currentSpace.Name != undefined">
-  <mat-card class="group-block" *ngFor="let group of allGroups">
+  <mat-card class="group-block" *ngFor="let group of allGroups" (mouseenter)="hoverGroup = group" (mouseleave)="hoverGroup = null">
     <div style="padding-bottom: 5px;">
       <button mat-icon-button *ngIf="group.Ideas.length > 0" (click)="group.open = !group.open">
         <mat-icon *ngIf="group.open == false">chevron_right</mat-icon>
@@ -9,10 +9,11 @@
         <mat-icon>note_add</mat-icon>
       </button>
       {{group.Name}}
-      <h2 class="mat-h2" *ngIf="group.Ideas.length == 0">Empty Groups will not be saved, to save please create an Idea</h2>
+      <button mat-icon-button class="group-info-button" *ngIf="hoverGroup == group" (click)="openGroupInfoDialog(group)">
+        <mat-icon style="padding-bottom: 3px">info</mat-icon>
+      </button>
     </div>
     <div class="card-row" *ngIf="group.open == true">
-
       <app-idea-card *ngFor="let idea of group.Ideas" [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
     </div>
   </mat-card>
@@ -22,13 +23,15 @@
       New Group
     </button>
   </mat-card>
-  <mat-card class="group-block" *ngIf="currentSpace.canCreateIdeas == true && groupCreateMode == true">
-    <mat-form-field style="width: 55%">
+  <mat-card class="new-group-entry-block" *ngIf="currentSpace.canCreateIdeas == true && groupCreateMode == true">
+    <mat-form-field style="width: 140px; margin-left: 3px">
       <input matInput placeholder="Title" type="text" autocomplete="off" [(ngModel)]="groupCreateName">
     </mat-form-field>
-    <button mat-button style="left: 30%" (click)="createNewGroup()">
-      Save Group
+    <button mat-icon-button style="margin-left: 10px; margin-right: 3px" (click)="createNewGroup()">
       <mat-icon>check_circle</mat-icon>
+    </button>
+    <button mat-icon-button (click)="groupCreateMode = false; groupCreateName = ''">
+      <mat-icon>cancel</mat-icon>
     </button>
   </mat-card>
 </div>

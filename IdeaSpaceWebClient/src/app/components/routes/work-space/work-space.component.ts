@@ -5,6 +5,8 @@ import { WorkSpaceService } from './work-space.service';
 import { MatDialog } from '@angular/material/dialog';
 import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
 import { Group } from '../../models/group';
+import { GroupInfoComponent } from '../../dialogue/group-info/group-info.component';
+import { currentId } from 'async_hooks';
 
 @Component({
   selector: 'app-work-space',
@@ -19,6 +21,7 @@ export class WorkSpaceComponent implements OnInit {
 
   groupCreateMode: boolean = false;
   groupCreateName: string = "";
+  hoverGroup: Group;
 
   @Input()
   set changeSpace(currentSpace: Space) {
@@ -89,6 +92,45 @@ export class WorkSpaceComponent implements OnInit {
     });
   }
 
+  openGroupInfoDialog(group: Group) {
+    let dialogRef = this.dialog.open(GroupInfoComponent, {
+      width: '500px',
+      data: { group: group, canBeDeleted: this.currentSpace.canBeDeleted, canBeEdited: this.currentSpace.canCreateIdeas }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != undefined && result.toSave == true) {
+        this.saveGroupData(result);
+      }
+      if (result != undefined && result.toDelete == true) {
+        this.deleteGroup(result.newName, false);
+      }
+      else if (result != undefined && result.toDeleteAll == true) {
+        this.deleteGroup(result.newName, true);
+      }
+    });
+  }
+
+  async saveGroupData(result: any) {
+    //Implement after move idea functionality added.
+  }
+
+  async deleteGroup(groupName: string, withData: boolean) {
+    if (withData == true) {
+      let foundGroups = await this.service.getAllGroups(this.currentSpace.Name);
+      let fIndex = foundGroups.findIndex(g => g.Name == groupName);
+
+      foundGroups[fIndex].Ideas.forEach(i => {
+        this.deleteIdea(i.Title);
+      });
+    }
+    let index: number = this.currentSpace.Groups.findIndex(g => g == groupName);
+    this.currentSpace.Groups.splice(index)
+
+    await this.service.createNewSpace(this.currentSpace);
+    this.updateGroupList();
+  }
+
   async createNewIdea(newIdeaTitle: string, newIdeaBody: string, parentGroup: string) {
     if (newIdeaTitle != "") {
       let newIdea: Idea = new Idea;
@@ -101,6 +143,10 @@ export class WorkSpaceComponent implements OnInit {
     }
   }
 
+  async deleteIdea(idea: string){
+    await this.service.deleteIdea(this.currentSpace.Name, idea);
+  }
+
   editNewGroup() {
     this.groupCreateMode = true;
   }
@@ -109,6 +155,8 @@ export class WorkSpaceComponent implements OnInit {
     this.groupCreateMode = false;
     this.currentSpace.Groups.push(this.groupCreateName);
     await this.service.createNewSpace(this.currentSpace);
+    
+    this.groupCreateName = ""
     this.updateGroupList();
   }
 }

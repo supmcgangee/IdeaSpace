@@ -1,0 +1,31 @@
+<p class="mat-h2">{{data.group.Name}}</p>
+<div>
+  <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == true" color="warn" (click)="toggleEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == false" (click)="toggleEdit()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == false" (click)="deletePromptShown = true">
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-button *ngIf="deletePromptShown == true && data.group.Name != '-Unhandled-'" color="warn" (click)="data.toDelete = true; closeDialog();">
+    Delete
+    <mat-icon>delete</mat-icon>
+  </button>
+  <button mat-button *ngIf="deletePromptShown == true && data.group.Name != '-Unhandled-'" color="warn" (click)="data.toDeleteAll = true; closeDialog();">
+    Delete All
+    <mat-icon>delete_forever</mat-icon>
+  </button>
+  <span *ngIf="deletePromptShown == true && data.group.Name == '-Unhandled-'" style="color: red;">
+    Delete All Unhandled Ideas?
+    <button mat-button color="warn" (click)="data.toDeleteAll = true; closeDialog();">
+      Delete
+      <mat-icon>delete</mat-icon>
+    </button>
+  </span>
+</div>
+<div class="mat-small" *ngIf="titleTemp != data.title || bodyTemp != data.body" style="color: red;">
+  Your changes have not been saved.
+  <button mat-raised-button *ngIf="editMode == true" color="warn" (click)="saveEdit()">save</button>
+</div>

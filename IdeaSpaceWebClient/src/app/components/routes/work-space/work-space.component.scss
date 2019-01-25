@@ -8,12 +8,25 @@
     overflow-y: hidden !important;
 }
 
+.group-info-button{
+    position: absolute;
+    right: 5px;
+}
+
 .new-group-block{
     padding: 5px;
     margin: 5px;
     margin-top: 10px;
     background-color: rgb(241, 241, 241);
     width: 140px;
+}
+
+.new-group-entry-block{
+    padding: 5px;
+    margin: 5px;
+    margin-top: 10px;
+    background-color: rgb(241, 241, 241);
+    width: 240px;
 }
 
 .card-row{
