@@ -1,5 +1,6 @@
-<div *ngIf="currentSpace.Name != undefined">
-  <mat-card class="group-block" *ngFor="let group of allGroups" (mouseenter)="hoverGroup = group" (mouseleave)="hoverGroup = null">
+<div cdkDropListGroup *ngIf="currentSpace.Name != undefined">
+  <mat-card class="group-block" *ngFor="let group of allGroups" (mouseenter)="hoverGroup = group"
+    (mouseleave)="hoverGroup = null">
     <div style="padding-bottom: 5px;">
       <button mat-icon-button *ngIf="group.Ideas.length > 0" (click)="group.open = !group.open">
         <mat-icon *ngIf="group.open == false">chevron_right</mat-icon>
@@ -16,8 +17,10 @@
         <mat-icon style="padding-bottom: 3px">info</mat-icon>
       </button>
     </div>
-    <div class="card-row" *ngIf="group.open == true">
-      <app-idea-card *ngFor="let idea of group.Ideas" [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
+    <div cdkDropList cdkDropListOrientation="horizontal" class="card-row" *ngIf="group.open == true" [cdkDropListData]="group" (cdkDropListDropped)="dragAndDrop($event)">
+      <div class="idea-card" *ngFor="let idea of group.Ideas" cdkDrag>
+          <app-idea-card [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
+      </div>
     </div>
   </mat-card>
   <mat-card class="new-group-block" *ngIf="currentSpace.canCreateIdeas == true && groupCreateMode == false">

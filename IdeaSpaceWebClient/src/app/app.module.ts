@@ -10,6 +10,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 import { SpacelistComponent } from './components/routes/spacelist/spacelist.component';
 import { SidenavComponent } from './components/routes/sidenav/sidenav.component';
 import { WorkSpaceComponent } from './components/routes/work-space/work-space.component';
@@ -45,7 +46,8 @@ import { GroupInfoComponent } from './components/dialogue/group-info/group-info.
     MatDialogModule,
     MatCardModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   entryComponents: [
     CreateIdeaComponent,

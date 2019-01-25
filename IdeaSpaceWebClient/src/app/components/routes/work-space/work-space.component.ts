@@ -6,7 +6,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.component';
 import { Group } from '../../models/group';
 import { GroupInfoComponent } from '../../dialogue/group-info/group-info.component';
-import { currentId } from 'async_hooks';
+import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-work-space',
@@ -143,7 +143,7 @@ export class WorkSpaceComponent implements OnInit {
     }
   }
 
-  async deleteIdea(idea: string){
+  async deleteIdea(idea: string) {
     await this.service.deleteIdea(this.currentSpace.Name, idea);
   }
 
@@ -155,8 +155,26 @@ export class WorkSpaceComponent implements OnInit {
     this.groupCreateMode = false;
     this.currentSpace.Groups.push(this.groupCreateName);
     await this.service.createNewSpace(this.currentSpace);
-    
+
     this.groupCreateName = ""
     this.updateGroupList();
+  }
+
+  dragAndDrop(event: CdkDragDrop<Group>) {
+    console.log(event.item)
+    console.log(event.container.data)
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data.Ideas, event.previousIndex, event.currentIndex);
+    } else {
+      let newIdea: Idea = new Idea;
+      newIdea.Title = event.previousContainer.data.Ideas[event.previousIndex].Title;
+      newIdea.Body = event.previousContainer.data.Ideas[event.previousIndex].Body;
+      newIdea.ParentGroup = event.container.data.Name;
+      transferArrayItem(event.previousContainer.data.Ideas,
+        event.container.data.Ideas,
+        event.previousIndex,
+        event.currentIndex);
+      this.createNewIdea(newIdea.Title, newIdea.Body, newIdea.ParentGroup)
+    }
   }
 }
