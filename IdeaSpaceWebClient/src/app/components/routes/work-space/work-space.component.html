@@ -5,6 +5,9 @@
         <mat-icon *ngIf="group.open == false">chevron_right</mat-icon>
         <mat-icon *ngIf="group.open == true">expand_more</mat-icon>
       </button>
+      <button mat-icon-button *ngIf="group.Ideas.length == 0 || group.Ideas == undefined">
+        <mat-icon *ngIf="group.open == false">remove</mat-icon>
+      </button>
       <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog(group.Name)">
         <mat-icon>note_add</mat-icon>
       </button>
