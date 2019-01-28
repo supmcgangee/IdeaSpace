@@ -7,6 +7,8 @@ import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.comp
 import { Group } from '../../models/group';
 import { GroupInfoComponent } from '../../dialogue/group-info/group-info.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { group } from '@angular/animations';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-work-space',
@@ -18,6 +20,7 @@ export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
   private allGroups: Group[] = [];
+  private groupOpenData: [string, boolean][] = [];
 
   groupCreateMode: boolean = false;
   groupCreateName: string = "";
@@ -33,7 +36,8 @@ export class WorkSpaceComponent implements OnInit {
 
   constructor(
     private service: WorkSpaceService,
-    public dialog: MatDialog) { }
+    public dialog: MatDialog,
+    private cookie: CookieService) { }
 
   ngOnInit() {
 
@@ -75,6 +79,7 @@ export class WorkSpaceComponent implements OnInit {
     if (unhandledGroup.Ideas.length > 0) {
       this.allGroups.push(unhandledGroup);
     }
+    this.getOpenData();
   }
 
   openCreateIdeaDialog(group: string) {
@@ -85,9 +90,11 @@ export class WorkSpaceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined && result.createIdea == true) {
-        let newIdeaTitle = result.title;
-        let newIdeaBody = result.body;
-        this.createNewIdea(newIdeaTitle, newIdeaBody, group);
+        let idea = new Idea;
+        idea.Title = result.title;
+        idea.Body = result.body;
+        idea.ParentGroup = group;
+        this.createNewIdea(idea);
       }
     });
   }
@@ -100,7 +107,7 @@ export class WorkSpaceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined && result.toSave == true) {
-        this.saveGroupData(result);
+        this.saveGroupData(result.newName, result.oldName);
       }
       if (result != undefined && result.toDelete == true) {
         this.deleteGroup(result.newName, false);
@@ -111,8 +118,18 @@ export class WorkSpaceComponent implements OnInit {
     });
   }
 
-  async saveGroupData(result: any) {
-    //Implement after move idea functionality added.
+  async saveGroupData(newName: string, oldName: string) {
+    let index = this.currentSpace.Groups.findIndex(g => g == oldName);
+    this.currentSpace.Groups[index] = newName;
+
+    index = this.allGroups.findIndex(g => g.Name == newName);
+    this.allGroups[index].Ideas.forEach(idea => {
+      idea.ParentGroup = newName;
+      this.createNewIdea(idea);
+    });
+
+    this.cookie.delete(this.currentSpace + "/" + oldName);
+    await this.service.createNewSpace(this.currentSpace);
   }
 
   async deleteGroup(groupName: string, withData: boolean) {
@@ -128,17 +145,13 @@ export class WorkSpaceComponent implements OnInit {
     this.currentSpace.Groups.splice(index)
 
     await this.service.createNewSpace(this.currentSpace);
+    this.cookie.delete(this.currentSpace + "/" + groupName)
     this.updateGroupList();
   }
 
-  async createNewIdea(newIdeaTitle: string, newIdeaBody: string, parentGroup: string) {
-    if (newIdeaTitle != "") {
-      let newIdea: Idea = new Idea;
-      newIdea.Title = newIdeaTitle;
-      newIdea.Body = newIdeaBody;
-      newIdea.ParentGroup = parentGroup;
-
-      await this.service.createNewIdea(this.currentSpace.Name, newIdea);
+  async createNewIdea(idea: Idea) {
+    if (idea.Title != "") {
+      await this.service.createNewIdea(this.currentSpace.Name, idea);
       this.updateGroupList();
     }
   }
@@ -158,6 +171,8 @@ export class WorkSpaceComponent implements OnInit {
 
     this.groupCreateName = ""
     this.updateGroupList();
+    this.setOpenData(this.groupCreateName, false)
+    this.getOpenData();
   }
 
   dragAndDrop(event: CdkDragDrop<Group>) {
@@ -174,7 +189,20 @@ export class WorkSpaceComponent implements OnInit {
         event.container.data.Ideas,
         event.previousIndex,
         event.currentIndex);
-      this.createNewIdea(newIdea.Title, newIdea.Body, newIdea.ParentGroup)
+      this.createNewIdea(newIdea)
     }
+  }
+
+  setOpenData(groupName: string, state: boolean) {
+    this.cookie.set(this.currentSpace.Name + "/" + groupName, state.toString());
+    this.getOpenData();
+  }
+
+  getOpenData() {
+    this.allGroups.forEach(group => {
+      let state: boolean;
+      state = (this.cookie.get(this.currentSpace.Name + "/" + group.Name) == "true");
+      group.open = state;
+    });
   }
 }

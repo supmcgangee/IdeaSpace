@@ -1,4 +1,11 @@
-<p class="mat-h2">{{data.group.Name}}</p>
+<div *ngIf="editMode == false">
+  <p class="mat-h2">{{data.group.Name}}</p>
+</div>
+<div *ngIf="editMode == true">
+  <mat-form-field style="width: 100%">
+    <input matInput placeholder="Group Name" type="text" autocomplete="off" [(ngModel)]="nameTemp">
+  </mat-form-field>
+</div>
 <div>
   <button mat-icon-button class="edit-button" *ngIf="data.canBeEdited == true && editMode == true" color="warn" (click)="toggleEdit()">
     <mat-icon>edit</mat-icon>
@@ -24,8 +31,12 @@
       <mat-icon>delete</mat-icon>
     </button>
   </span>
+  <button mat-button *ngIf="data.canBeDeleted == true" class="close-button" style="left: 75%;" (click)="closeDialog();">Close</button>
+  <button mat-button *ngIf="data.canBeDeleted == false" style="left: 85%;" (click)="closeDialog();">Close</button>
 </div>
-<div class="mat-small" *ngIf="titleTemp != data.title || bodyTemp != data.body" style="color: red;">
+<div class="mat-small" *ngIf="nameTemp != data.group.Name" style="color: red;">
   Your changes have not been saved.
   <button mat-raised-button *ngIf="editMode == true" color="warn" (click)="saveEdit()">save</button>
+
+
 </div>

@@ -20,8 +20,8 @@ export class GroupInfoComponent implements OnInit {
   ngOnInit() {
     this.deletePromptShown = false;
     this.editMode = false;
-    this.nameTemp = "";
-    this.oldName = "";
+    this.nameTemp = this.data.group.Name;
+    this.oldName = this.data.group.Name;
   }
 
   toggleEdit() {

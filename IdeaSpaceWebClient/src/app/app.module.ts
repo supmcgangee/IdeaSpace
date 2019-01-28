@@ -21,6 +21,7 @@ import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.com
 import { IdeaCardComponent } from './components/routes/idea-card/idea-card.component';
 import { GroupInfoComponent } from './components/dialogue/group-info/group-info.component';
 
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,7 @@ import { GroupInfoComponent } from './components/dialogue/group-info/group-info.
     GroupInfoComponent,
     SpaceInfoComponent
   ],
-  providers: [],
+  providers: [ CookieService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
