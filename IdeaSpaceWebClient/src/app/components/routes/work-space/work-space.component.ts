@@ -20,7 +20,6 @@ export class WorkSpaceComponent implements OnInit {
 
   private currentSpace: Space = new Space;
   private allGroups: Group[] = [];
-  private groupOpenData: [string, boolean][] = [];
 
   groupCreateMode: boolean = false;
   groupCreateName: string = "";
@@ -52,6 +51,7 @@ export class WorkSpaceComponent implements OnInit {
       let newGroup: Group = new Group;
       newGroup.Name = group;
       newGroup.Ideas = [];
+      newGroup.open = (this.cookie.get(this.currentSpace.Name + "/" + newGroup.Name) == "true");
       this.allGroups.push(newGroup);
     });
 
@@ -158,6 +158,8 @@ export class WorkSpaceComponent implements OnInit {
 
   async deleteIdea(idea: string) {
     await this.service.deleteIdea(this.currentSpace.Name, idea);
+    this.updateGroupList();
+    console.log(this.currentSpace.Groups)
   }
 
   editNewGroup() {

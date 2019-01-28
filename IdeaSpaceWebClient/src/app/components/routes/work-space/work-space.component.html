@@ -21,7 +21,7 @@
     </div>
     <div cdkDropList cdkDropListOrientation="horizontal" class="card-row" *ngIf="group.open == true" [cdkDropListData]="group" (cdkDropListDropped)="dragAndDrop($event)">
       <div class="idea-card" *ngFor="let idea of group.Ideas" cdkDrag>
-          <app-idea-card [idea]="idea" [currentSpace]="currentSpace"></app-idea-card>
+          <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateGroupList($event)"></app-idea-card>
       </div>
     </div>
   </mat-card>

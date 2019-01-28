@@ -4,7 +4,6 @@
   margin-top: 10px;
   background-color: rgb(241, 241, 241);
   max-height: 325px;
-  overflow: scroll;
   overflow-y: hidden !important;
 }
 
@@ -30,10 +29,10 @@
 }
 
 .card-row{
-    display: flex;
+  display: flex;
   flex-direction: row;
   border-radius: 4px;
-  overflow: hidden;
+  overflow-x: scroll;
 }
 
 .cdk-drag-preview {
