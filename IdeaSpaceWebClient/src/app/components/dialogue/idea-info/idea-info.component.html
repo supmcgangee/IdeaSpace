@@ -3,7 +3,6 @@
   <p class="mat-small hint" *ngIf="data.canBeDeleted == false">*This Idea cannot be deleted</p>
   <p class="mat-body">{{data.body}}</p>
 </div>
-
 <div *ngIf="editMode == true">
   <div>
     <mat-form-field style="width: 100%">
@@ -16,7 +15,6 @@
     </mat-form-field>
   </div>
 </div>
-
 <div>
   <button mat-icon-button *ngIf="data.canBeDeleted == true && deletePromptShown == false" (click)="deletePrompt();">
     <mat-icon>delete</mat-icon>

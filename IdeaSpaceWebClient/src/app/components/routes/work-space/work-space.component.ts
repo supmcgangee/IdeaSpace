@@ -191,9 +191,9 @@ export class WorkSpaceComponent implements OnInit {
     }
   }
 
-  preventResize(){
+  preventResize() {
     this.allGroups.forEach(group => {
-      if(group.Ideas.length == 0){
+      if (group.Ideas.length == 0) {
         group.open = false;
         this.setOpenData(group.Name, false);
       }
@@ -204,7 +204,7 @@ export class WorkSpaceComponent implements OnInit {
     this.cookie.set(this.currentSpace.Name + "/" + groupName, state.toString());
   }
 
-  getOpenData(groupName: string) : boolean {
+  getOpenData(groupName: string): boolean {
     let state = (this.cookie.get(this.currentSpace.Name + "/" + groupName) == "true");
     return state;
   }

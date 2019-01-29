@@ -1,13 +1,34 @@
-<p class="mat-body">Space Name: {{data.name}}</p>
-<p class="mat-small hint" *ngIf="data.canBeDeleted == false">*This space cannot be deleted</p>
-<p class="mat-small hint" *ngIf="data.canCreateIdeas == false">*You cannot create Ideas within this Space</p>
-<p class="mat-body">{{data.desc}}</p>
-
+<div *ngIf="editMode == false">
+  <p class="mat-body">Space Name: {{data.name}}</p>
+  <p class="mat-small hint" *ngIf="data.canBeDeleted == false">*This space cannot be deleted</p>
+  <p class="mat-small hint" *ngIf="data.canCreateIdeas == false">*You cannot create Ideas within this Space</p>
+  <p class="mat-body">{{data.desc}}</p>
+</div>
+<div *ngIf="editMode == true">
+  <div>
+    <mat-form-field style="width: 100%">
+      <input matInput placeholder="Name" type="text" autocomplete="off" [(ngModel)]="nameTemp">
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-form-field style="width: 100%">
+      <textarea matInput class="textarea" placeholder="Description" rows="4" [(ngModel)]="descTemp"></textarea>
+    </mat-form-field>
+  </div>
+</div>
 <div>
   <button mat-icon-button *ngIf="data.canBeDeleted == true" (click)="deletePrompt(true);">
     <mat-icon *ngIf="deletePromptShown == false">delete</mat-icon>
     <mat-icon *ngIf="deletePromptShown == true" color="warn">delete_forever</mat-icon>
   </button>
+  <button mat-icon-button class="edit-button" *ngIf="data.canCreateIdeas == true" (click)="toggleEdit()">
+    <mat-icon *ngIf="editMode == false">edit</mat-icon>
+    <mat-icon *ngIf="editMode == true" color="warn">edit</mat-icon>
+  </button>
+  <div class="mat-small" *ngIf="nameTemp != data.name || descTemp != data.desc" style="color: red;">
+    Your changes have not been saved.
+    <button mat-raised-button *ngIf="editMode == true" color="warn" (click)="saveEdit()">save</button>
+  </div>
   <button mat-button *ngIf="data.canBeDeleted == true" style="left: 75%;" (click)="closeDialog();">Close</button>
   <button mat-button *ngIf="data.canBeDeleted == false" style="left: 85%;" (click)="closeDialog();">Close</button>
 </div>
