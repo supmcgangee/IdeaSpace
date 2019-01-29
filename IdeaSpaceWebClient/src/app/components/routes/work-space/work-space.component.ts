@@ -7,7 +7,6 @@ import { CreateIdeaComponent } from '../../dialogue/create-idea/create-idea.comp
 import { Group } from '../../models/group';
 import { GroupInfoComponent } from '../../dialogue/group-info/group-info.component';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
-import { group } from '@angular/animations';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -190,6 +189,15 @@ export class WorkSpaceComponent implements OnInit {
         event.currentIndex);
       this.createNewIdea(newIdea)
     }
+  }
+
+  preventResize(){
+    this.allGroups.forEach(group => {
+      if(group.Ideas.length == 0){
+        group.open = false;
+        this.setOpenData(group.Name, false);
+      }
+    });
   }
 
   setOpenData(groupName: string, state: boolean) {

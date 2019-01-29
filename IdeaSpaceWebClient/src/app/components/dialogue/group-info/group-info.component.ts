@@ -34,6 +34,7 @@ export class GroupInfoComponent implements OnInit {
     this.editMode = false;
     this.oldName = this.data.group.Name;
     this.data.group.Name = this.nameTemp;
+    this.closeDialog();
   }
 
   closeDialog(): void {

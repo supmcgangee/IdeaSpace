@@ -37,6 +37,7 @@ export class IdeaInfoComponent implements OnInit {
     this.oldTitle = this.data.title;
     this.data.title = this.titleTemp;
     this.data.body = this.bodyTemp;
+    this.closeDialog();
   }
   //Save method not called when clicking ouside of box. Result maybe is undefined at that point ¬.¬.
 

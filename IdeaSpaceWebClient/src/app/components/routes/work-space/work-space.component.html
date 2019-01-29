@@ -19,9 +19,11 @@
         <mat-icon style="padding-bottom: 3px">info</mat-icon>
       </button>
     </div>
-    <div cdkDropList cdkDropListOrientation="horizontal" class="card-row" *ngIf="group.open == true" [cdkDropListData]="group" (cdkDropListDropped)="dragAndDrop($event)">
-      <div class="idea-card" *ngFor="let idea of group.Ideas" cdkDrag>
-          <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateGroupList($event)"></app-idea-card>
+    <div class="card-row" cdkDropList [cdkDropListData]="group" cdkDropListOrientation="horizontal" (cdkDropListDropped)="dragAndDrop($event)">
+      <div class="idea-card" *ngIf="group.open == true">
+        <div *ngFor="let idea of group.Ideas" (cdkDragEntered)="preventResize()" cdkDrag>
+            <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateGroupList($event)"></app-idea-card>
+        </div>
       </div>
     </div>
   </mat-card>
