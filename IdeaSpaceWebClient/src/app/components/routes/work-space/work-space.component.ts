@@ -39,7 +39,6 @@ export class WorkSpaceComponent implements OnInit {
     private cookie: CookieService) { }
 
   ngOnInit() {
-
   }
 
   async updateGroupList() {
@@ -51,7 +50,7 @@ export class WorkSpaceComponent implements OnInit {
       let newGroup: Group = new Group;
       newGroup.Name = group;
       newGroup.Ideas = [];
-      newGroup.open = (this.cookie.get(this.currentSpace.Name + "/" + newGroup.Name) == "true");
+      newGroup.open = this.getOpenData(group);
       this.allGroups.push(newGroup);
     });
 
@@ -79,7 +78,6 @@ export class WorkSpaceComponent implements OnInit {
     if (unhandledGroup.Ideas.length > 0) {
       this.allGroups.push(unhandledGroup);
     }
-    this.getOpenData();
   }
 
   openCreateIdeaDialog(group: string) {
@@ -173,8 +171,7 @@ export class WorkSpaceComponent implements OnInit {
 
     this.groupCreateName = ""
     this.updateGroupList();
-    this.setOpenData(this.groupCreateName, false)
-    this.getOpenData();
+    this.setOpenData(this.groupCreateName, false);
   }
 
   dragAndDrop(event: CdkDragDrop<Group>) {
@@ -197,14 +194,10 @@ export class WorkSpaceComponent implements OnInit {
 
   setOpenData(groupName: string, state: boolean) {
     this.cookie.set(this.currentSpace.Name + "/" + groupName, state.toString());
-    this.getOpenData();
   }
 
-  getOpenData() {
-    this.allGroups.forEach(group => {
-      let state: boolean;
-      state = (this.cookie.get(this.currentSpace.Name + "/" + group.Name) == "true");
-      group.open = state;
-    });
+  getOpenData(groupName: string) : boolean {
+    let state = (this.cookie.get(this.currentSpace.Name + "/" + groupName) == "true");
+    return state;
   }
 }
