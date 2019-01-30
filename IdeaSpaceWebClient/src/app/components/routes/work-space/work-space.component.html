@@ -1,32 +1,7 @@
-<div cdkDropListGroup *ngIf="currentSpace.Name != undefined">
-  <mat-card class="group-block" *ngFor="let group of allGroups" (mouseenter)="hoverGroup = group" (mouseleave)="hoverGroup = null">
-    <div style="padding-bottom: 5px;">
-      <button mat-icon-button *ngIf="group.Ideas.length > 0 && group.open == false" (click)="group.open = true; setOpenData(group.Name, true)">
-        <mat-icon *ngIf="group.open == false">chevron_right</mat-icon>
-      </button>
-      <button mat-icon-button *ngIf="group.Ideas.length > 0 && group.open == true" (click)="group.open = false; setOpenData(group.Name, false)">
-        <mat-icon *ngIf="group.open == true">expand_more</mat-icon>
-      </button>
-      <button mat-icon-button *ngIf="group.Ideas.length == 0 || group.Ideas == undefined">
-        <mat-icon *ngIf="group.open == false">remove</mat-icon>
-      </button>
-      <button mat-icon-button *ngIf="currentSpace.canCreateIdeas == true" (click)="openCreateIdeaDialog(group.Name)">
-        <mat-icon>note_add</mat-icon>
-      </button>
-      {{group.Name}}
-      <button mat-icon-button class="group-info-button" *ngIf="hoverGroup == group" (click)="openGroupInfoDialog(group)">
-        <mat-icon style="padding-bottom: 3px">info</mat-icon>
-      </button>
-    </div>
-    <div class="card-row" cdkDropList [cdkDropListData]="group" cdkDropListOrientation="horizontal"
-      (cdkDropListDropped)="dragAndDrop($event)">
-      <div class="idea-card" *ngIf="group.open == true">
-        <div *ngFor="let idea of group.Ideas" (cdkDragEntered)="preventResize()" cdkDrag>
-          <app-idea-card [idea]="idea" [currentSpace]="currentSpace" (emitter)="updateGroupList($event)"></app-idea-card>
-        </div>
-      </div>
-    </div>
-  </mat-card>
+<div *ngIf="currentSpace.Name != undefined">
+  <div cdkDropListGroup>
+    <app-group-card *ngFor="let group of allGroups" [group]="group" [currentSpace]="currentSpace" (emitter)="updateGroupList($event)">test</app-group-card>
+  </div>
   <mat-card class="new-group-block" *ngIf="currentSpace.canCreateIdeas == true && groupCreateMode == false">
     <button mat-button (click)="editNewGroup()">
       <mat-icon>note_add</mat-icon>

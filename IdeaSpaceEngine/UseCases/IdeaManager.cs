@@ -48,7 +48,7 @@ namespace IdeaSpace.UseCases
             if (!Directory.Exists(currentSpaceDir))
                 Directory.CreateDirectory(currentSpaceDir);
 
-            GenerateId(idea);
+            idea = GenerateId(idea);
             storageAdapter.WriteToFile(currentSpaceDir, idea);
         }
 
@@ -92,7 +92,7 @@ namespace IdeaSpace.UseCases
             }
 
             idea.Id = id;
-            return new Idea();
+            return idea;
         }
     }
 }

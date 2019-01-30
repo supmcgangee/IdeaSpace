@@ -2,8 +2,8 @@ import { Component, OnInit, EventEmitter, Input, Output } from '@angular/core';
 import { Idea } from '../../models/idea';
 import { IdeaInfoComponent } from '../../dialogue/idea-info/idea-info.component';
 import { Space } from '../../models/space';
-import { WorkSpaceService } from '../work-space/work-space.service';
 import { MatDialog } from '@angular/material/dialog';
+import { IdeaCardService } from './idea-card.service';
 
 @Component({
   selector: 'app-idea-card',
@@ -22,7 +22,7 @@ export class IdeaCardComponent implements OnInit {
   currentSpace: Space;
 
   constructor(
-    private service: WorkSpaceService,
+    private service: IdeaCardService,
     public dialog: MatDialog) { }
 
   ngOnInit() {

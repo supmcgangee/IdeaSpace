@@ -18,10 +18,11 @@ import { CreateSpaceComponent } from './components/dialogue/create-space/create-
 import { SpaceInfoComponent } from './components/dialogue/space-info/space-info.component';
 import { CreateIdeaComponent } from './components/dialogue/create-idea/create-idea.component';
 import { IdeaInfoComponent } from './components/dialogue/idea-info/idea-info.component';
-import { IdeaCardComponent } from './components/routes/idea-card/idea-card.component';
+import { IdeaCardComponent } from './components/cards/idea-card/idea-card.component';
 import { GroupInfoComponent } from './components/dialogue/group-info/group-info.component';
 
 import { CookieService } from 'ngx-cookie-service';
+import { GroupCardComponent } from './components/cards/group-card/group-card.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { CookieService } from 'ngx-cookie-service';
     CreateIdeaComponent,
     IdeaInfoComponent,
     IdeaCardComponent,
-    GroupInfoComponent
+    GroupInfoComponent,
+    GroupCardComponent
   ],
   imports: [
     BrowserModule,
