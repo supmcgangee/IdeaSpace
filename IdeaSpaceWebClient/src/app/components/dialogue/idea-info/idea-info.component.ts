@@ -60,6 +60,7 @@ export interface DialogData {
   toDelete: boolean;
   toSave: boolean;
   title: string;
+  id: string;
   body: string;
   parent: string;
   canBeDeleted: boolean;

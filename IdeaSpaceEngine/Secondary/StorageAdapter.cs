@@ -12,6 +12,7 @@ namespace IdeaSpace.Secondary
 
         public Idea ReadIdeaFromFile(string filePath)
         {
+            InitDefaultDir();
             var data = File.ReadAllText(filePath);
             var idea = JsonConvert.DeserializeObject<Idea>(data);
             return idea;
@@ -19,6 +20,7 @@ namespace IdeaSpace.Secondary
 
         public List<Idea> ReadAllIdeas(string filePath)
         {
+            InitDefaultDir();
             var list = new List<Idea>();
             var files = Directory.GetFiles(filePath);
 
@@ -33,6 +35,7 @@ namespace IdeaSpace.Secondary
 
         public Space ReadSpaceFromFile(string filePath)
         {
+            InitDefaultDir();
             var data = File.ReadAllText(filePath);
             var idea = JsonConvert.DeserializeObject<Space>(data);
             return idea;
@@ -53,7 +56,7 @@ namespace IdeaSpace.Secondary
             var spaceData = File.ReadAllText(fileDir + @"\SpaceDat" + ext);
             var space = JsonConvert.DeserializeObject<Space>(spaceData);
             if (space.canCreateIdeas || writeOverride == true)
-                File.WriteAllText(rootDir + spaceName + @"\" + idea.Title + ext, data);
+                File.WriteAllText(rootDir + spaceName + @"\" + idea.Id + ext, data);
         }
 
         public void DeleteFile(string spaceName, string fileName)
@@ -82,6 +85,7 @@ namespace IdeaSpace.Secondary
             var idea = new Idea
             {
                 Title = "Idea",
+                Id = "Idea",
                 Body = "Hi, I'm Default",
                 ParentGroup = "Default Group"
             };

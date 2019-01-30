@@ -1,0 +1,1 @@
+{"canBeDeleted":true,"canCreateIdeas":true,"Name":"New Space","Description":"Tests","Groups":["Test","Another Test"]}

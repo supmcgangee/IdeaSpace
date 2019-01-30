@@ -181,6 +181,7 @@ export class WorkSpaceComponent implements OnInit {
     } else {
       let newIdea: Idea = new Idea;
       newIdea.Title = event.previousContainer.data.Ideas[event.previousIndex].Title;
+      newIdea.Id = event.previousContainer.data.Ideas[event.previousIndex].Id;
       newIdea.Body = event.previousContainer.data.Ideas[event.previousIndex].Body;
       newIdea.ParentGroup = event.container.data.Name;
       transferArrayItem(event.previousContainer.data.Ideas,

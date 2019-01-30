@@ -35,10 +35,12 @@ export class IdeaCardComponent implements OnInit {
   }
 
   openIdeaInfoDialog() {
+    console.log(this.idea);
     let dialogRef = this.dialog.open(IdeaInfoComponent, {
       width: '650px',
       data: {
         title: this.idea.Title,
+        id: this.idea.Id,
         body: this.idea.Body,
         parent: this.idea.ParentGroup,
         canBeDeleted: this.currentSpace.canBeDeleted,

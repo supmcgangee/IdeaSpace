@@ -43,13 +43,13 @@ namespace IdeaSpaceTests.Secondary
         [TestMethod]
         public void CanSerializeIdeaToString()
         {
-            var ideaList = ideas.Select(i => new Idea { Title = i }).ToList();
+            var ideaList = ideas.Select(i => new Idea { Title = i, Id = i}).ToList();
 
             foreach (var idea in ideaList)
             {
                 storageAdapter.WriteToFile(testSpace.Name, idea);
 
-                Assert.IsTrue(File.Exists(rootDir + testSpace.Name + @"\" + idea.Title + ext));
+                Assert.IsTrue(File.Exists(rootDir + testSpace.Name + @"\" + idea.Id + ext));
             }
         }
 

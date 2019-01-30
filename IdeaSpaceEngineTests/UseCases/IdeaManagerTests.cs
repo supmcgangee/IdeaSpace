@@ -30,13 +30,13 @@ namespace IdeaSpaceTests.UseCases
             storageAdapterMock.Setup(mock => mock.ReadIdeaFromFile(filePath + knownTitle + ext))
                 .Returns(new Idea { Title = knownTitle });
             storageAdapterMock.Setup(mock => mock.ReadAllIdeas(It.IsAny<string>()))
-                .Returns(new List<Idea> { new Idea { Title = knownTitle, Body = "test", ParentGroup = "A" }});
+                .Returns(new List<Idea> { new Idea { Title = knownTitle, Id = knownTitle, Body = "test", ParentGroup = "A" }});
         }
         
         [TestMethod]
         public void CanCreateAIdeaInCurrentSpace()
         {
-            testIdea = new Idea { Title = knownTitle, Body = "NewTestBody" };
+            testIdea = new Idea { Title = knownTitle, Id = "test", Body = "NewTestBody" };
             storageAdapterMock.Setup(mock => mock.WriteToFile(knownId, testIdea, false));
 
             ideaManager.SaveIdea(testIdea);
@@ -48,7 +48,7 @@ namespace IdeaSpaceTests.UseCases
         public void FindMethodIsAbleToReturnAIdea()
         {
             storageAdapterMock.Setup(mock => mock.ReadIdeaFromFile(It.IsAny<string>()))
-                .Returns(new Idea { Title = knownTitle });
+                .Returns(new Idea { Title = knownTitle, Id = knownTitle});
 
             Assert.IsNotNull(ideaManager.FindIdeaWithTitle(knownTitle));
         }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using IdeaSpace.Models;
@@ -11,8 +12,8 @@ namespace IdeaSpace.UseCases
     {
         private readonly IStorageAdapter storageAdapter;
         private const string rootDir = @"C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\TestStorage\";
-        private const string ext = ".txt";
         private const string defaultSpaceId = "Default Dir";
+        private const string alphabet = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         private string currentSpaceDir;
         private List<Idea> ideaList = new List<Idea>();
 
@@ -28,10 +29,10 @@ namespace IdeaSpace.UseCases
             GetAllIdeas();
         }
 
-        public Idea FindIdeaWithTitle(string title)
+        public Idea FindIdeaWithTitle(string id)
         {
             GetAllIdeas();
-            var foundIdea = ideaList.FirstOrDefault(idea => idea.Title == title);
+            var foundIdea = ideaList.FirstOrDefault(idea => idea.Id == id);
 
             return foundIdea;
         }
@@ -47,30 +48,51 @@ namespace IdeaSpace.UseCases
             if (!Directory.Exists(currentSpaceDir))
                 Directory.CreateDirectory(currentSpaceDir);
 
+            GenerateId(idea);
             storageAdapter.WriteToFile(currentSpaceDir, idea);
         }
 
         public void DeleteIdeaWithTitle(string title)
         {
-            var ideas = GetAllIdeasAsString();
-            if (!ideas.Contains(title)) return;
+            var ideas = storageAdapter.ReadAllIdeas(rootDir + currentSpaceDir);
+            var titles = ideas.Select(idea => idea.Title).ToList();
+
+            if (!titles.Contains(title)) return;
 
             storageAdapter.DeleteFile(currentSpaceDir, title);
         }
 
-        private List<Idea> GetAllIdeas()
+        private void GetAllIdeas()
         {
             ideaList = storageAdapter.ReadAllIdeas(rootDir + currentSpaceDir);
-            
-            return ideaList;
         }
 
-        public List<string> GetAllIdeasAsString()
+        private static Idea GenerateId(Idea idea)
         {
-            GetAllIdeas();
-            var strings = ideaList.Select(idea => idea.Title).ToList();
+            if (!string.IsNullOrEmpty(idea.Id)) { return idea; }
 
-            return strings;
+            var guid = Guid.NewGuid();
+            var guidReplace = guid.ToString();
+
+            string[] replaceThese = {"-", "a", "b", "c", "d", "e", "f"};
+            string[] replaceWith = { " ", "1", "2", "3", "4", "5", "6"};
+            
+            for (var i = 0; i < replaceThese.Length; i++)
+            {
+                guidReplace = guidReplace.Replace(replaceThese[i], replaceWith[i]);
+            }
+
+            string id = "";
+            for (var i = 0; i < guidReplace.Length; i += 2)
+            {
+                var subString = guidReplace.Substring(i, 2);
+                var number = int.Parse(subString);
+
+                id += alphabet[number % alphabet.Length];
+            }
+
+            idea.Id = id;
+            return new Idea();
         }
     }
 }
