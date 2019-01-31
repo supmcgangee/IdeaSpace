@@ -32,6 +32,24 @@ namespace IdeaSpaceTests.Secondary
         }
 
         [TestMethod]
+        public void CanReadSpaceFromFile()
+        {
+            var filepath = rootDir + testSpace.Name + @"\SpaceDat" + ext;
+            var foundSpace = storageAdapter.ReadSpaceFromFile(filepath);
+
+            Assert.AreEqual(testSpace.Name, foundSpace.Name);
+        }
+
+        [TestMethod]
+        public void CanReadAllIdeas()
+        {
+            var foundIdeas = storageAdapter.ReadAllIdeas(rootDir + "Default Dir");
+
+
+            Assert.IsTrue(foundIdeas.Select(i => i.Title == "Idea").FirstOrDefault());
+        }
+
+        [TestMethod]
         public void CanSerializeSpaceToString()
         {
             storageAdapter.WriteToFile(testSpace);

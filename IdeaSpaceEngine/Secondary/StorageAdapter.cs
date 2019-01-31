@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using IdeaSpace.Models;
 using Newtonsoft.Json;
 
@@ -10,35 +11,22 @@ namespace IdeaSpace.Secondary
         private const string rootDir = @"C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\TestStorage\";
         private const string ext = ".txt";
 
-        public Idea ReadIdeaFromFile(string filePath)
-        {
-            InitDefaultDir();
-            var data = File.ReadAllText(filePath);
-            var idea = JsonConvert.DeserializeObject<Idea>(data);
-            return idea;
-        }
-
         public List<Idea> ReadAllIdeas(string filePath)
         {
-            InitDefaultDir();
             var list = new List<Idea>();
             var files = Directory.GetFiles(filePath);
 
-            foreach (var file in files)
-            {
-                if (file.EndsWith("SpaceDat" + ext)) continue;
-                list.Add(ReadIdeaFromFile(file));
-            }
+            list.AddRange(files.Where(f => !f.EndsWith("SpaceDat" + ext))
+                .Select(f => JsonConvert.DeserializeObject<Idea>(File.ReadAllText(f))));
 
             return list;
         }
 
         public Space ReadSpaceFromFile(string filePath)
         {
-            InitDefaultDir();
             var data = File.ReadAllText(filePath);
-            var idea = JsonConvert.DeserializeObject<Space>(data);
-            return idea;
+            var space = JsonConvert.DeserializeObject<Space>(data);
+            return space;
         }
 
         public void WriteToFile(Space space)
@@ -55,7 +43,7 @@ namespace IdeaSpace.Secondary
             if (!Directory.Exists(fileDir)) Directory.CreateDirectory(fileDir);
             var spaceData = File.ReadAllText(fileDir + @"\SpaceDat" + ext);
             var space = JsonConvert.DeserializeObject<Space>(spaceData);
-            if (space.canCreateIdeas || writeOverride == true)
+            if (space.canCreateIdeas || writeOverride)
                 File.WriteAllText(rootDir + spaceName + @"\" + idea.Id + ext, data);
         }
 
@@ -93,7 +81,7 @@ namespace IdeaSpace.Secondary
             {
                 Name = "Default Dir",
                 Description = "The Default Directory provided by the program.",
-                Groups = new string[]{"Default Group"},
+                Groups = new []{"Default Group"},
                 canBeDeleted = false,
                 canCreateIdeas = false
             };

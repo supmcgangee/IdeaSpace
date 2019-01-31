@@ -10,7 +10,6 @@ namespace IdeaSpace.UseCases
     public class GroupManager : IGroupManager
     {
         private const string rootDir = @"C:\Users\ukbdav\Documents\Projects\IdeaSpace\Repo\TestStorage\";
-        private const string ext = ".txt";
 
         private readonly IStorageAdapter storageAdapter;
 
@@ -19,7 +18,7 @@ namespace IdeaSpace.UseCases
             this.storageAdapter = storageAdapter;
         }
 
-        public List<Group> OrganiseIdeasIntoGroups(string currentSpaceDir)
+        public List<Group> SortIdeasIntoGroups(string currentSpaceDir)
         {
             var groupList = new List<Group>();
             if (!Directory.Exists(rootDir + currentSpaceDir)) return groupList;

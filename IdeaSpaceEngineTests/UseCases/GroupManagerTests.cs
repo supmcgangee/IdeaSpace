@@ -31,7 +31,7 @@ namespace IdeaSpaceTests.UseCases
         {
             storageAdapter.Setup(mock => mock.ReadAllIdeas(It.IsAny<string>())).Returns(ideasList);
 
-            var groups = groupManager.OrganiseIdeasIntoGroups(knownId);
+            var groups = groupManager.SortIdeasIntoGroups(knownId);
 
             Assert.IsTrue(groups.Count == 3);
             for (int i = 0; i < groups.Count; i++)

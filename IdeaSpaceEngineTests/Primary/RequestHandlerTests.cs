@@ -60,11 +60,11 @@ namespace IdeaSpaceTests.Primary
         {
             var testList = new List<Group>();
 
-            groupManagerMock.Setup(mock => mock.OrganiseIdeasIntoGroups(It.IsAny<string>())).Returns(testList);
+            groupManagerMock.Setup(mock => mock.SortIdeasIntoGroups(It.IsAny<string>())).Returns(testList);
 
             requestHandler.GetAllGroups(spaceId);
 
-            groupManagerMock.Verify(mock => mock.OrganiseIdeasIntoGroups(It.IsAny<string>()));
+            groupManagerMock.Verify(mock => mock.SortIdeasIntoGroups(It.IsAny<string>()));
         }
 
         [TestMethod]

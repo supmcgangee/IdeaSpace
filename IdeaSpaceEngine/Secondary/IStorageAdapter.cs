@@ -5,7 +5,6 @@ namespace IdeaSpace.Secondary
 {
     public interface IStorageAdapter
     {
-        Idea ReadIdeaFromFile(string filePath);
         List<Idea> ReadAllIdeas(string filePath);
         Space ReadSpaceFromFile(string filePath);
         void WriteToFile(Space space);

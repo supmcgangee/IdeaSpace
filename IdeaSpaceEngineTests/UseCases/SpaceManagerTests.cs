@@ -41,12 +41,6 @@ namespace IdeaSpaceTests.UseCases
         }
         
         [TestMethod]
-        public void FindMethodIsAbleToReturnASpace()
-        {
-            Assert.IsNotNull(spaceManager.FindSpaceWithId(knownId));
-        }
-        
-        [TestMethod]
         public void CanCallDeleteASpaceMethodUsingStorageAdapter()
         {
             spaceManager.DeleteSpaceWithId(knownId);

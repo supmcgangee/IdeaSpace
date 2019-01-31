@@ -36,7 +36,7 @@ namespace IdeaSpace.Primary
         public string GetAllGroups(string spaceId)
         {
             ideaManager.ChangeCurrentSpaceDir(spaceId);
-            var data = JsonConvert.SerializeObject(groupManager.OrganiseIdeasIntoGroups(spaceId));
+            var data = JsonConvert.SerializeObject(groupManager.SortIdeasIntoGroups(spaceId));
 
             return data;
         }

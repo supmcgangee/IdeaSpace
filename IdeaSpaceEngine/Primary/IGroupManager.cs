@@ -7,6 +7,6 @@ namespace IdeaSpace.Primary
 {
     public interface IGroupManager
     {
-        List<Group> OrganiseIdeasIntoGroups(string currentSpaceDir);
+        List<Group> SortIdeasIntoGroups(string currentSpaceDir);
     }
 }

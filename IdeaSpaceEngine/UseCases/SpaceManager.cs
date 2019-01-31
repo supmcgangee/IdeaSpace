@@ -27,22 +27,6 @@ namespace IdeaSpace.UseCases
             UpdateSpacesList();
         }
 
-        public Space FindSpaceWithId(string id)
-        {
-            UpdateSpacesList();
-            Space foundSpace = null;
-
-            foreach (var space in SpacesList)
-            {
-                if (space.Name == id)
-                {
-                    foundSpace = space;
-                }
-            }
-
-            return foundSpace;
-        }
-
         public List<Space> GetSpacesList()
         {
             UpdateSpacesList();
