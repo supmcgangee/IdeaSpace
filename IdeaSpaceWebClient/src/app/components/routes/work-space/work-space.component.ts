@@ -60,7 +60,7 @@ export class WorkSpaceComponent implements OnInit {
         group.Ideas.forEach(idea => {
           this.allGroups[index].Ideas.push(idea)
         });
-        group.Ideas;
+        this.allGroups[index].Ideas.sort((a, b) => a.OrderIndex - b.OrderIndex);
       }
       else {
         unhandledGroup.Name = "-Unhandled-";

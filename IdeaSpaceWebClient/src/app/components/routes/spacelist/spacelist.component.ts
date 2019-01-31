@@ -92,9 +92,8 @@ export class SpacelistComponent implements OnInit {
   }
 
   async deleteSpace(spaceId: string) {
-    //TODO - Add confirmation dialogue prompt 
-    console.log(spaceId)
     await this.service.deleteSpace(spaceId);
+    this.updateCurrentSpace(new Space);
     this.updateSpacesList();
   }
 

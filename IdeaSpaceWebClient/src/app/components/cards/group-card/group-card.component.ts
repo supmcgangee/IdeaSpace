@@ -8,6 +8,7 @@ import { Space } from '../../models/space';
 import { Group } from '../../models/group';
 import { Idea } from '../../models/idea';
 import { CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/drag-drop';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-group-card',
@@ -16,14 +17,14 @@ import { CdkDragDrop, transferArrayItem, moveItemInArray } from '@angular/cdk/dr
 })
 export class GroupCardComponent implements OnInit {
 
-  @Output() 
+  @Output()
   emitter = new EventEmitter();
 
   hovering: boolean;
 
-  @Input() 
+  @Input()
   group: Group;
-  @Input() 
+  @Input()
   currentSpace: Space;
 
   constructor(
@@ -41,14 +42,16 @@ export class GroupCardComponent implements OnInit {
       let newIdea: Idea = new Idea;
       newIdea.Title = event.previousContainer.data.Ideas[event.previousIndex].Title;
       newIdea.Id = event.previousContainer.data.Ideas[event.previousIndex].Id;
+      newIdea.OrderIndex = event.currentIndex;
       newIdea.Body = event.previousContainer.data.Ideas[event.previousIndex].Body;
       newIdea.ParentGroup = event.container.data.Name;
       transferArrayItem(event.previousContainer.data.Ideas,
         event.container.data.Ideas,
         event.previousIndex,
         event.currentIndex);
-      this.createNewIdea(newIdea)
+      this.createNewIdea(newIdea);
     }
+    this.updateIdeaOrderValues();
   }
 
   openCreateIdeaDialog(group: string) {
@@ -75,14 +78,17 @@ export class GroupCardComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result != undefined && result.toSave == true) {
-        this.saveGroupData(result.newName, result.oldName);
-      }
-      if (result != undefined && result.toDelete == true) {
-        this.deleteGroup(false);
-      }
-      else if (result != undefined && result.toDeleteAll == true) {
-        this.deleteGroup(true);
+      if (result != undefined) {
+        if (result.toSave == true) {
+          this.saveGroupData(result.newName, result.oldName);
+        }
+
+        if (result.toDelete == true) {
+          this.deleteGroup(false);
+        }
+        else if (result.toDeleteAll == true) {
+          this.deleteGroup(true);
+        }
       }
     });
   }
@@ -135,6 +141,16 @@ export class GroupCardComponent implements OnInit {
 
   updateGroupList() {
     this.emitter.emit();
+  }
+
+  updateIdeaOrderValues() {
+    this.group.Ideas.forEach(idea => {
+      let index = this.group.Ideas.indexOf(idea)
+      if (idea.OrderIndex != index) {
+        idea.OrderIndex = index;
+        this.createNewIdea(idea);
+      }
+    });
   }
 
   setOpenData(state: boolean) {

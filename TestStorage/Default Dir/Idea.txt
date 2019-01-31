@@ -1,1 +1,1 @@
-{"Title":"Idea","Id":"Idea","Body":"Hi, I'm Default","ParentGroup":"Default Group"}
+{"Title":"Idea","Id":"Idea","OrderIndex":0,"Body":"Hi, I'm Default","ParentGroup":"Default Group"}
